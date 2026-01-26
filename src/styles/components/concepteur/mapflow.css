@@ -1,0 +1,419 @@
+/* MapFlow Project specific styles */
+
+
+/* Container principal */
+.project-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  margin-top: 10rem;
+}
+
+.project-content {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Titre principal */
+.project-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--theme-secondary-color);
+  text-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
+}
+
+/* Cartes de description */
+.project-description-card {
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  transition: all 0.3s ease;
+}
+
+.mapflow-card {
+  background: linear-gradient(
+    135deg,
+    var(--mapflow-gradient-start) 0%,
+    var(--mapflow-gradient-end) 100%
+  );
+  border: 2px solid rgba(14, 165, 233, 0.3);
+}
+
+.mapflow-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(14, 165, 233, 0.4);
+  border-color: var(--mapflow-primary);
+}
+
+.project-description-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--theme-text-color);
+}
+
+/* Cursor de typing */
+.typing-cursor {
+  color: var(--mapflow-primary);
+  font-weight: bold;
+  animation: blink 1s infinite;
+  text-shadow: 0 0 8px rgba(14, 165, 233, 0.6);
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Sections */
+.project-section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--theme-link-color);
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+}
+
+/* Listes de fonctionnalités */
+.project-features {
+  margin-bottom: 2rem;
+}
+
+.project-list {
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  list-style: none;
+}
+
+.mapflow-list {
+  background: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.1) 0%,
+    rgba(59, 130, 246, 0.05) 100%
+  );
+  border: 2px solid rgba(14, 165, 233, 0.25);
+}
+
+.project-list-item {
+  padding: 0.8rem 0;
+  padding-left: 2rem;
+  position: relative;
+  opacity: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.project-list-item::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  font-size: 1.5rem;
+}
+
+.mapflow-list .project-list-item::before {
+  color: var(--mapflow-primary);
+  text-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+}
+
+/* Images */
+/* Images */
+.project-images-container {
+  margin: 3rem 0;
+}
+
+.project-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-image-wrapper {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid rgba(14, 165, 233, 0.3);
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  height: 350px; /* Hauteur fixe pour toutes les images */
+}
+
+.project-image-wrapper:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(14, 165, 233, 0.5);
+  border-color: var(--mapflow-primary);
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; /* L'image remplit tout l'espace et est coupée si nécessaire */
+  transition: transform 0.3s ease;
+}
+
+.project-image-wrapper:hover .project-image {
+  transform: scale(1.05);
+}
+
+/* Divider */
+.project-divider {
+  height: 2px;
+  margin: 3rem 10%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--mapflow-primary) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+}
+
+/* Technologies */
+.project-technologies {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.08) 0%,
+    rgba(59, 130, 246, 0.04) 100%
+  );
+  border-radius: 15px;
+  border: 2px solid rgba(14, 165, 233, 0.2);
+}
+
+.technologies-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: var(--theme-link-color);
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+}
+
+.technologies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.technology-item {
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.technology-item:hover {
+  transform: translateY(-10px);
+}
+
+.tech-logo {
+  width: 119px;
+  height: 81px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 2px solid rgba(14, 165, 233, 0.3);
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.tech-logo:hover {
+  border-color: var(--mapflow-primary);
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+}
+
+.tech-name {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--theme-text-color);
+  font-weight: 500;
+}
+
+/* Dialog / Modal */
+.dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.dialog-modal {
+  position: relative;
+  background: rgba(1, 22, 39, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  border: 2px solid var(--mapflow-primary);
+  box-shadow: 0 0 50px rgba(14, 165, 233, 0.5);
+}
+
+.mapflow-dialog {
+  border-color: var(--mapflow-primary);
+  box-shadow: 0 0 50px rgba(14, 165, 233, 0.5);
+}
+
+.dialog-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--mapflow-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
+}
+
+.dialog-close:hover {
+  background: var(--mapflow-accent);
+  transform: rotate(90deg);
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.8);
+}
+
+.fullscreen-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.mapflow-fullscreen {
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.6s ease-out forwards;
+}
+
+.mapflow-list .project-list-item {
+  animation: mapflowSlideIn 0.6s ease-out forwards;
+}
+
+@keyframes mapflowSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Effet de typing spécial pour MapFlow */
+.mapflow-card .typing-cursor {
+  color: var(--mapflow-primary);
+  text-shadow: 0 0 8px rgba(14, 165, 233, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-title {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .project-images-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-description-card {
+    padding: 1.5rem;
+  }
+
+  .project-list {
+    padding: 1.5rem;
+  }
+
+  .dialog-modal {
+    padding: 1rem;
+    max-width: 95vw;
+  }
+
+  .project-divider {
+    margin: 2rem 5%;
+  }
+
+  .technologies-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-container {
+    padding: 1rem;
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .project-description-text {
+    font-size: 1rem;
+  }
+
+  .project-list-item {
+    font-size: 0.95rem;
+  }
+}

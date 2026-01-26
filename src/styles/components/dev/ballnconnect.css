@@ -1,0 +1,34 @@
+/* BallnConnectProject specific styles */
+
+.ballnconnect-grid {
+  justify-content: center;
+}
+
+.mobile-image {
+  width: 300px !important;
+  height: 600px !important;
+  border-radius: 20px;
+}
+
+.mobile-image .project-image {
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .mobile-image {
+    width: 250px !important;
+    height: 500px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-image {
+    width: 200px !important;
+    height: 400px !important;
+  }
+
+  .ballnconnect-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}

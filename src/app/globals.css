@@ -1,26 +1,179 @@
+/* global.css */
+
 @import "tailwindcss";
 
+@import "../styles/pages/home.css";
+@import "../styles/pages/not-found.css";
+@import "../styles/pages/about/bio.css";
+@import "../styles/pages/about/interest.css";
+@import "../styles/pages/about/about.css";
+@import "../styles/pages/about/qualification.css";
+@import "../styles/pages/work/work.css";
+@import "../styles/pages/work/technologies.css";
+@import "../styles/pages/work/developeur.css";
+@import "../styles/pages/contact/contact.css";
+@import "../styles/pages/contact/diagnostic.css";
+
+@import "../styles/snake.css";
+
+@import "../styles/components/navbar.css";
+@import "../styles/components/footer.css";
+@import "../styles/components/sidebar.css";
+@import "../styles/components/technologies/backend-bdd.css";
+@import "../styles/components/technologies/frontend.css";
+@import "../styles/components/technologies/languages-essentiels.css";
+@import "../styles/components/dev/abtaxi.css";
+@import "../styles/components/dev/ballnconnect.css";
+@import "../styles/components/dev/bonneplace.css";
+@import "../styles/components/concepteur/smat-step.css";
+@import "../styles/components/concepteur/team-calenda.css";
+@import "../styles/components/concepteur/youg-boss.css";
+@import "../styles/components/concepteur/tcc.css";
+@import "../styles/components/concepteur/mapflow.css";
+
+
+
+
+
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --theme-primary-color: #4d5bce;
+  --theme-secondary-color: #43d9ad;
+  --theme-link-color: #e99287;
+  --theme-primary-color-back: #011627;
+  --theme-text-color: #fff;
+  --theme-text-color-com: #8f8c8c;
+  --theme-background-color: #43d9ad;
+
+  /* Glassmorphism variables */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --glass-blur: blur(10px);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("/projects/bg-port.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--theme-text-color);
+  font-family: "Fira Mono", monospace;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Overlay pour améliorer la lisibilité */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(1, 22, 39, 0.85) 0%,
+    rgba(1, 22, 39, 0.7) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+h1,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  color: var(--theme-secondary-color);
+  text-shadow: 0 0 20px rgba(67, 217, 173, 0.3);
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  color: var(--theme-link-color);
+  text-shadow: 0 0 20px rgba(233, 146, 135, 0.3);
+}
+
+p,
+a,
+span {
+  font-family: "Fira Mono", monospace;
+}
+
+li {
+  font-family: "Fira Mono", monospace;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Scrollbar glassmorphism */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(233, 146, 135, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--theme-primary-color) 0%,
+    var(--theme-secondary-color) 100%
+  );
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(77, 91, 206, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--theme-secondary-color) 0%,
+    var(--theme-primary-color) 100%
+  );
+}
+
+/* Selection */
+::selection {
+  background: var(--theme-secondary-color);
+  color: var(--theme-primary-color-back);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }

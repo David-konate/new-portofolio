@@ -1,0 +1,235 @@
+/* components/Footer.css */
+
+.glass-footer {
+  background: rgba(1, 22, 39, 0.7);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  padding: 3rem 2rem;
+  margin-top: 4rem;
+}
+
+.glass-footer:hover {
+  border-top-color: rgba(67, 217, 173, 0.4);
+  box-shadow: 0 -12px 40px rgba(67, 217, 173, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Footer Container */
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Links Section */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-links-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  color: var(--theme-text-color-com);
+  text-decoration: none;
+  font-family: "Fira Mono", monospace;
+}
+
+.footer-link:hover {
+  color: var(--theme-secondary-color);
+  transform: translateY(-2px);
+}
+
+.footer-link.active {
+  color: var(--theme-secondary-color);
+  text-shadow: 0 0 10px rgba(67, 217, 173, 0.6),
+    0 0 20px rgba(67, 217, 173, 0.3);
+}
+
+.footer-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--theme-secondary-color),
+    var(--theme-primary-color)
+  );
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.footer-link-divider {
+  color: var(--theme-text-color-com);
+  opacity: 0.5;
+  user-select: none;
+}
+
+/* Copyright Section */
+.footer-copyright {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  margin: 2rem 0;
+}
+
+.copyright-text {
+  font-size: 0.95rem;
+  color: var(--theme-text-color-com);
+  font-family: "Fira Mono", monospace;
+  transition: all 0.3s ease;
+}
+
+.copyright-text:hover {
+  color: var(--theme-secondary-color);
+}
+
+/* Social Links Section */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  color: var(--theme-text-color-com);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.social-link:hover::before {
+  left: 100%;
+}
+
+.social-link:hover {
+  background: rgba(67, 217, 173, 0.2);
+  border-color: var(--theme-secondary-color);
+  color: var(--theme-secondary-color);
+  box-shadow: 0 0 20px rgba(67, 217, 173, 0.4),
+    inset 0 0 15px rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px) scale(1.1);
+}
+
+.social-link svg {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .glass-footer {
+    padding: 2rem 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .footer-container {
+    padding: 0 1rem;
+  }
+
+  .footer-links-row {
+    gap: 1rem;
+  }
+
+  .footer-link {
+    font-size: 0.9rem;
+  }
+
+  .social-links {
+    gap: 1.5rem;
+  }
+
+  .social-link {
+    width: 45px;
+    height: 45px;
+  }
+
+  .social-link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .copyright-text {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-footer {
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .footer-links-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-link-divider {
+    display: none;
+  }
+
+  .social-links {
+    gap: 1rem;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+}

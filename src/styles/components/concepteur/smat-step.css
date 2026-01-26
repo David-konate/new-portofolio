@@ -1,0 +1,456 @@
+
+
+/* Container principal */
+.project-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  margin-top: 10rem;
+}
+
+.project-content {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Titre principal */
+.project-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--theme-secondary-color);
+  text-shadow: 0 0 20px rgba(67, 217, 173, 0.4);
+}
+
+/* Cartes de description */
+.project-description-card {
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  transition: all 0.3s ease;
+}
+
+.smatsteps-card {
+  background: linear-gradient(
+    135deg,
+    var(--quiz-gradient-start) 0%,
+    var(--quiz-gradient-end) 100%
+  );
+  border: 2px solid rgba(233, 146, 135, 0.3);
+}
+
+.smatsteps-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(233, 146, 135, 0.4);
+  border-color: var(--quiz-primary);
+}
+
+.project-description-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--theme-text-color);
+}
+
+/* Cursor de typing */
+.typing-cursor {
+  color: var(--quiz-primary);
+  font-weight: bold;
+  animation: blink 1s infinite;
+  text-shadow: 0 0 8px rgba(233, 146, 135, 0.6);
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Sections */
+.project-section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--theme-link-color);
+  text-shadow: 0 0 20px rgba(233, 146, 135, 0.4);
+}
+
+/* Listes de fonctionnalités */
+.project-features {
+  margin-bottom: 2rem;
+}
+
+.project-list {
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  list-style: none;
+}
+
+.smatsteps-list {
+  background: linear-gradient(
+    135deg,
+    rgba(233, 146, 135, 0.1) 0%,
+    rgba(67, 217, 173, 0.05) 100%
+  );
+  border: 2px solid rgba(233, 146, 135, 0.25);
+}
+
+.project-list-item {
+  padding: 0.8rem 0;
+  padding-left: 2rem;
+  position: relative;
+  opacity: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.project-list-item::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(233, 146, 135, 0.5);
+}
+
+.smatsteps-list .project-list-item::before {
+  color: var(--quiz-primary);
+  text-shadow: 0 0 10px rgba(233, 146, 135, 0.5);
+}
+
+/* Images */
+.project-images-container {
+  margin: 3rem 0;
+}
+
+.project-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-images-grid-small {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.project-image-wrapper {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid rgba(233, 146, 135, 0.3);
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+}
+
+.project-image-wrapper:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(233, 146, 135, 0.5);
+  border-color: var(--quiz-primary);
+}
+
+.project-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.project-image-wrapper:hover .project-image {
+  transform: scale(1.05);
+}
+
+/* Divider */
+.project-divider {
+  height: 2px;
+  margin: 3rem 10%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--quiz-primary) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(233, 146, 135, 0.5);
+}
+
+/* Lien vers le site */
+.project-link-container {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.project-link {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: linear-gradient(
+    135deg,
+    var(--quiz-primary) 0%,
+    var(--quiz-secondary) 100%
+  );
+  color: var(--theme-primary-color-back);
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(233, 146, 135, 0.4);
+  border: 2px solid transparent;
+}
+
+.project-link:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 35px rgba(233, 146, 135, 0.6);
+  border-color: var(--quiz-secondary);
+}
+
+/* Technologies */
+.project-technologies {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(233, 146, 135, 0.08) 0%,
+    rgba(67, 217, 173, 0.04) 100%
+  );
+  border-radius: 15px;
+  border: 2px solid rgba(233, 146, 135, 0.2);
+}
+
+.technologies-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: var(--theme-link-color);
+  text-shadow: 0 0 20px rgba(233, 146, 135, 0.4);
+}
+
+.technologies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.technology-item {
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.technology-item:hover {
+  transform: translateY(-10px);
+}
+
+.tech-logo {
+  width: 119px;
+  height: 81px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 2px solid rgba(233, 146, 135, 0.3);
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.tech-logo:hover {
+  border-color: var(--quiz-primary);
+  box-shadow: 0 0 20px rgba(233, 146, 135, 0.5);
+}
+
+.tech-name {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--theme-text-color);
+  font-weight: 500;
+}
+
+/* Dialog / Modal */
+.dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.dialog-modal {
+  position: relative;
+  background: rgba(1, 22, 39, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  border: 2px solid var(--quiz-primary);
+  box-shadow: 0 0 50px rgba(233, 146, 135, 0.5);
+}
+
+.smatsteps-dialog {
+  border-color: var(--quiz-primary);
+  box-shadow: 0 0 50px rgba(233, 146, 135, 0.5);
+}
+
+.dialog-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--quiz-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(233, 146, 135, 0.6);
+}
+
+.dialog-close:hover {
+  background: var(--quiz-secondary);
+  transform: rotate(90deg);
+  box-shadow: 0 0 30px rgba(67, 217, 173, 0.8);
+}
+
+.fullscreen-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.smatsteps-fullscreen {
+  border: 1px solid rgba(233, 146, 135, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.6s ease-out forwards;
+}
+
+.smatsteps-list .project-list-item {
+  animation: quizSlideIn 0.6s ease-out forwards;
+}
+
+@keyframes quizSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Effet de typing spécial pour SmatSteps */
+.smatsteps-card .typing-cursor {
+  color: var(--quiz-primary);
+  text-shadow: 0 0 8px rgba(233, 146, 135, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-title {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .project-images-grid,
+  .project-images-grid-small {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-description-card {
+    padding: 1.5rem;
+  }
+
+  .project-list {
+    padding: 1.5rem;
+  }
+
+  .dialog-modal {
+    padding: 1rem;
+    max-width: 95vw;
+  }
+
+  .project-divider {
+    margin: 2rem 5%;
+  }
+
+  .technologies-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-container {
+    padding: 1rem;
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .project-description-text {
+    font-size: 1rem;
+  }
+
+  .project-list-item {
+    font-size: 0.95rem;
+  }
+
+  .project-link {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}

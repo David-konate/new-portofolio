@@ -12,6 +12,7 @@ interface FormField {
   placeholder?: string;
   options?: (string | { value: string; category?: string })[];
   conditional?: string;
+  helpText?: string;
 }
 
 interface FormSection {
@@ -65,12 +66,39 @@ export default function DiagnosticForm() {
     styles: [],
     apps_reference: "",
 
-    // Section 6: Budget
+    // Section 6: Contenu
+    types_contenu: [],
+    creation_contenu: "",
+    gestion_contenu: "",
+    frequence_maj: "",
+
+    // Section 7: Technique
+    plateformes: [],
+    priorite_plateformes: "",
+    integrations: "",
+    donnees_sensibles: "",
+
+    // Section 8: Budget
     budget: "",
     modele_revenus: [],
 
+    // Section 9: Planning
     date_lancement: "",
     flexibilite_date: "",
+    dates_cles: "",
+    disponibilite: "",
+
+    // Section 10: Maintenance
+    maintenance: "",
+    formation: "",
+
+    // Section 11: Concurrence
+    concurrents: "",
+    avantages: "",
+
+    // Section 12: Complémentaires
+    contraintes: "",
+    questions_supplementaires: "",
 
     // Consentement RGPD
     consent: false,
@@ -136,24 +164,26 @@ export default function DiagnosticForm() {
       fields: [
         {
           name: "description_activite",
-          label: "Décrivez votre activité actuelle",
+          label: "Décrivez votre activité actuelle en quelques lignes",
           type: "textarea",
           required: true,
         },
         {
           name: "presence_digitale",
-          label: "Présence digitale actuelle",
+          label: "Disposez-vous déjà d'une présence digitale ?",
           type: "textarea",
+          placeholder: "Site web, réseaux sociaux, autre application...",
         },
         {
           name: "motivation",
-          label: "Pourquoi créer cette application maintenant ?",
+          label:
+            "Qu'est-ce qui vous pousse à créer cette application maintenant ?",
           type: "textarea",
           required: true,
         },
         {
           name: "objectif_principal",
-          label: "Objectif principal",
+          label: "Quel est l'objectif n°1 de cette application ?",
           type: "radio",
           required: true,
           options: [
@@ -172,14 +202,19 @@ export default function DiagnosticForm() {
         },
         {
           name: "problemes_resolus",
-          label: "Problèmes concrets à résoudre",
+          label:
+            "Quels problèmes concrets cette application va-t-elle résoudre ?",
           type: "textarea",
           required: true,
+          placeholder:
+            "Ex: réduire le temps d'attente téléphonique, permettre la commande 24h/24...",
         },
         {
           name: "resultats_attendus",
-          label: "Résultats mesurables attendus",
+          label: "Quels résultats mesurables attendez-vous ?",
           type: "textarea",
+          placeholder:
+            "Ex: X téléchargements, Y ventes/mois, réduction de Z% des appels...",
         },
       ],
     },
@@ -199,12 +234,14 @@ export default function DiagnosticForm() {
           label: "Profession / Catégorie",
           type: "text",
           required: true,
+          placeholder: "Ex: Professionnels, Étudiants, Grand public...",
         },
         {
           name: "zone_geo",
           label: "Zone géographique",
           type: "text",
           required: true,
+          placeholder: "Ex: France, International, Région spécifique...",
         },
         {
           name: "competence_tech",
@@ -214,22 +251,26 @@ export default function DiagnosticForm() {
         },
         {
           name: "users_6mois",
-          label: "Utilisateurs estimés à 6 mois",
+          label: "Volume d'utilisateurs estimé à 6 mois",
           type: "text",
+          placeholder: "Nombre d'utilisateurs estimés",
         },
         {
           name: "users_1an",
-          label: "Utilisateurs estimés à 1 an",
+          label: "Volume d'utilisateurs estimé à 1 an",
           type: "text",
+          placeholder: "Nombre d'utilisateurs estimés",
         },
         {
           name: "acces_actuel",
-          label: "Comment accèdent-ils à vos services actuellement ?",
+          label:
+            "Comment vos utilisateurs accèdent-ils actuellement à vos services ?",
           type: "textarea",
+          placeholder: "Ex: Téléphone, Email, Site web, En personne...",
         },
         {
           name: "frustrations",
-          label: "Principales frustrations des utilisateurs",
+          label: "Quelles sont leurs principales frustrations ?",
           type: "textarea",
         },
       ],
@@ -242,64 +283,97 @@ export default function DiagnosticForm() {
           name: "fonctionnalites",
           label: "Fonctionnalités souhaitées",
           type: "checkbox",
+          helpText: "Cochez toutes les fonctionnalités souhaitées",
           options: [
-            { value: "Inscription/Connexion email", category: "Utilisateurs" },
-            { value: "Connexion réseaux sociaux", category: "Utilisateurs" },
-            { value: "Profil utilisateur", category: "Utilisateurs" },
-            { value: "Catalogue produits", category: "E-commerce" },
-            { value: "Panier et commande", category: "E-commerce" },
-            { value: "Paiement en ligne", category: "E-commerce" },
-            { value: "Système de réservation", category: "Réservation" },
-            { value: "Notifications rappels", category: "Réservation" },
+            {
+              value: "Inscription/Connexion email",
+              category: "Gestion utilisateurs",
+            },
+            {
+              value: "Connexion réseaux sociaux",
+              category: "Gestion utilisateurs",
+            },
+            { value: "Profil utilisateur", category: "Gestion utilisateurs" },
+            {
+              value: "Récupération mot de passe",
+              category: "Gestion utilisateurs",
+            },
+            { value: "Catalogue produits", category: "E-commerce / Vente" },
+            { value: "Panier et commande", category: "E-commerce / Vente" },
+            { value: "Paiement en ligne", category: "E-commerce / Vente" },
+            { value: "Gestion stock", category: "E-commerce / Vente" },
+            {
+              value: "Système de réservation",
+              category: "Réservation / Rendez-vous",
+            },
+            {
+              value: "Notifications rappels",
+              category: "Réservation / Rendez-vous",
+            },
             { value: "Chat/Messagerie", category: "Communication" },
             { value: "Notifications push", category: "Communication" },
             { value: "Système avis", category: "Communication" },
             { value: "Géolocalisation", category: "Géolocalisation" },
             { value: "Carte interactive", category: "Géolocalisation" },
-            { value: "Scanner QR code", category: "Autres" },
-            { value: "Partage réseaux sociaux", category: "Autres" },
-            { value: "Programme fidélité", category: "Autres" },
-            { value: "Multilingue", category: "Autres" },
+            { value: "Recherche proximité", category: "Géolocalisation" },
+            { value: "Scanner QR code", category: "Autres fonctionnalités" },
+            {
+              value: "Partage réseaux sociaux",
+              category: "Autres fonctionnalités",
+            },
+            {
+              value: "Recherche avancée",
+              category: "Autres fonctionnalités",
+            },
+            {
+              value: "Programme fidélité",
+              category: "Autres fonctionnalités",
+            },
+            { value: "Multilingue", category: "Autres fonctionnalités" },
           ],
         },
         {
           name: "autres_fonctionnalites",
           label: "Autres fonctionnalités spécifiques",
           type: "textarea",
+          placeholder:
+            "Décrivez d'autres fonctionnalités spécifiques à votre projet...",
         },
         {
           name: "parcours_utilisateur",
-          label: "Parcours type d'un utilisateur",
+          label: "Décrivez le parcours type d'un utilisateur",
           type: "textarea",
           required: true,
+          placeholder:
+            "Ex: 1. L'utilisateur ouvre l'application et... 2. Il accède à... 3. Il effectue...",
         },
       ],
     },
     {
-      title: "Design",
+      title: "Design et expérience",
       icon: "🎨",
       fields: [
         {
           name: "charte_graphique",
-          label: "Charte graphique",
+          label: "Possédez-vous une charte graphique ?",
           type: "select",
           options: ["", "Oui (je la fournirai)", "Non (à créer)"],
         },
         {
           name: "couleurs",
-          label: "Couleurs principales",
+          label: "Couleurs principales de votre marque",
           type: "text",
-          placeholder: "Ex: Bleu (#0066CC)",
+          placeholder: "Ex: Bleu (#0066CC), Rouge (#FF0000)",
         },
         {
           name: "logo",
-          label: "Logo",
+          label: "Possédez-vous un logo ?",
           type: "select",
           options: ["", "Oui (à fournir)", "Non (à créer)"],
         },
         {
           name: "styles",
-          label: "Style préféré",
+          label: "Quel style préférez-vous ?",
           type: "checkbox",
           options: [
             { value: "Moderne et épuré" },
@@ -313,16 +387,112 @@ export default function DiagnosticForm() {
           name: "apps_reference",
           label: "Applications de référence",
           type: "textarea",
+          placeholder:
+            "Listez 2-3 applications dont le design vous plaît et expliquez pourquoi...",
+          helpText:
+            'Ex: "J\'aime Uber pour sa simplicité et Airbnb pour ses belles photos"',
         },
       ],
     },
     {
-      title: "Budget et Planning",
+      title: "Contenu",
+      icon: "📝",
+      fields: [
+        {
+          name: "types_contenu",
+          label: "Quels types de contenu seront présents ?",
+          type: "checkbox",
+          options: [
+            { value: "Textes" },
+            { value: "Images" },
+            { value: "Vidéos" },
+            { value: "Documents PDF" },
+            { value: "Audio" },
+          ],
+        },
+        {
+          name: "creation_contenu",
+          label: "Qui fournira le contenu initial ?",
+          type: "select",
+          options: [
+            "",
+            "Nous le fournirons",
+            "À créer par vos soins (rédaction, photos, etc.)",
+            "Mixte",
+          ],
+        },
+        {
+          name: "gestion_contenu",
+          label:
+            "Souhaitez-vous gérer le contenu vous-même après le lancement ?",
+          type: "select",
+          options: [
+            "",
+            "Oui, via un back-office simple",
+            "Non, nous vous contactons pour les modifications",
+            "Selon le type de contenu",
+          ],
+        },
+        {
+          name: "frequence_maj",
+          label: "Fréquence de mise à jour prévue",
+          type: "select",
+          options: [
+            "",
+            "Quotidienne",
+            "Hebdomadaire",
+            "Mensuelle",
+            "Occasionnelle",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Aspects techniques",
+      icon: "💻",
+      fields: [
+        {
+          name: "plateformes",
+          label:
+            "Sur quelles plateformes souhaitez-vous lancer l'application ?",
+          type: "checkbox",
+          required: true,
+          options: [
+            { value: "iOS (iPhone/iPad)" },
+            { value: "Android" },
+            { value: "Web (navigateur)" },
+          ],
+        },
+        {
+          name: "priorite_plateformes",
+          label: "Ordre de priorité si budget limité",
+          type: "text",
+          placeholder: "Ex: 1. Android, 2. iOS, 3. Web",
+        },
+        {
+          name: "integrations",
+          label:
+            "L'application doit-elle s'intégrer avec des services existants ?",
+          type: "textarea",
+          placeholder:
+            "Ex: Stripe pour le paiement, Mailchimp, CRM existant, ERP...",
+        },
+        {
+          name: "donnees_sensibles",
+          label: "Données sensibles à gérer ?",
+          type: "textarea",
+          placeholder:
+            "Ex: Paiements, données personnelles, données médicales...",
+        },
+      ],
+    },
+    {
+      title: "Budget et monétisation",
       icon: "💰",
       fields: [
         {
           name: "budget",
-          label: "Budget global envisagé",
+          label: "Budget global envisagé pour le développement",
           type: "select",
           required: true,
           options: [
@@ -332,22 +502,28 @@ export default function DiagnosticForm() {
             "15 000 - 30 000 €",
             "30 000 - 50 000 €",
             "Plus de 50 000 €",
-            "Budget flexible",
+            "Budget flexible selon fonctionnalités",
           ],
         },
         {
           name: "modele_revenus",
-          label: "Modèle de revenus",
+          label: "Comment l'application va-t-elle générer des revenus ?",
           type: "checkbox",
           options: [
             { value: "Vente produits/services" },
             { value: "Abonnements" },
             { value: "Publicité" },
-            { value: "Freemium" },
+            { value: "Freemium (version gratuite + payante)" },
             { value: "Commissions" },
-            { value: "Pas de monétisation" },
+            { value: "Pas de monétisation directe" },
           ],
         },
+      ],
+    },
+    {
+      title: "Planning",
+      icon: "📅",
+      fields: [
         {
           name: "date_lancement",
           label: "Date de lancement souhaitée",
@@ -355,9 +531,100 @@ export default function DiagnosticForm() {
         },
         {
           name: "flexibilite_date",
-          label: "Flexibilité de la date",
+          label: "Cette date est-elle :",
           type: "select",
-          options: ["", "Impérative", "Souhaitée", "Flexible"],
+          options: [
+            "",
+            "Impérative (non négociable)",
+            "Souhaitée (mais flexible)",
+            "Flexible",
+          ],
+        },
+        {
+          name: "dates_cles",
+          label: "Y a-t-il des dates clés à respecter ?",
+          type: "textarea",
+          placeholder:
+            "Ex: Salon professionnel le 15/06, lancement commercial...",
+        },
+        {
+          name: "disponibilite",
+          label: "Quelle est votre disponibilité pour suivre le projet ?",
+          type: "select",
+          options: [
+            "",
+            "Très disponible (réponses sous 24h)",
+            "Disponible (réponses sous 48-72h)",
+            "Disponibilité limitée",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Maintenance et formation",
+      icon: "🔧",
+      fields: [
+        {
+          name: "maintenance",
+          label:
+            "Souhaitez-vous un contrat de maintenance après le lancement ?",
+          type: "select",
+          options: [
+            "",
+            "Oui, maintenance corrective (bugs uniquement)",
+            "Oui, maintenance évolutive (nouvelles fonctionnalités)",
+            "Les deux",
+            "Non, au cas par cas",
+          ],
+        },
+        {
+          name: "formation",
+          label: "Aurez-vous besoin d'une formation ?",
+          type: "select",
+          options: [
+            "",
+            "Oui, pour utiliser le back-office",
+            "Oui, documentation complète",
+            "Les deux",
+            "Non",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Concurrence et positionnement",
+      icon: "🎯",
+      fields: [
+        {
+          name: "concurrents",
+          label: "Connaissez-vous des applications similaires ?",
+          type: "textarea",
+          placeholder:
+            "Listez les applications concurrentes et précisez ce qui différenciera la vôtre...",
+        },
+        {
+          name: "avantages",
+          label: "Quels sont vos avantages concurrentiels ?",
+          type: "textarea",
+        },
+      ],
+    },
+    {
+      title: "Informations complémentaires",
+      icon: "➕",
+      fields: [
+        {
+          name: "contraintes",
+          label: "Y a-t-il des contraintes particulières ?",
+          type: "textarea",
+          placeholder:
+            "Ex: Accessibilité handicap, mode offline, contraintes légales spécifiques...",
+        },
+        {
+          name: "questions_supplementaires",
+          label:
+            "Avez-vous des questions ou des éléments supplémentaires à partager ?",
+          type: "textarea",
         },
       ],
     },
@@ -389,8 +656,19 @@ export default function DiagnosticForm() {
     const newErrors: { [key: string]: string } = {};
 
     currentFields.forEach((field) => {
-      if (field.required && !formData[field.name]) {
-        newErrors[field.name] = "Ce champ est obligatoire";
+      if (field.required) {
+        const value = formData[field.name];
+
+        if (field.type === "checkbox") {
+          if (!value || (Array.isArray(value) && value.length === 0)) {
+            newErrors[field.name] = "Veuillez sélectionner au moins une option";
+          }
+        } else if (
+          !value ||
+          (typeof value === "string" && value.trim() === "")
+        ) {
+          newErrors[field.name] = "Ce champ est obligatoire";
+        }
       }
     });
 
@@ -444,7 +722,7 @@ export default function DiagnosticForm() {
           message: data.message,
         });
 
-        // Reset form après 3 secondes
+        // Reset form après 5 secondes
         setTimeout(() => {
           setCurrentStep(0);
           setFormData({
@@ -477,10 +755,26 @@ export default function DiagnosticForm() {
             logo: "",
             styles: [],
             apps_reference: "",
+            types_contenu: [],
+            creation_contenu: "",
+            gestion_contenu: "",
+            frequence_maj: "",
+            plateformes: [],
+            priorite_plateformes: "",
+            integrations: "",
+            donnees_sensibles: "",
             budget: "",
             modele_revenus: [],
             date_lancement: "",
             flexibilite_date: "",
+            dates_cles: "",
+            disponibilite: "",
+            maintenance: "",
+            formation: "",
+            concurrents: "",
+            avantages: "",
+            contraintes: "",
+            questions_supplementaires: "",
             consent: false,
           });
           setSubmitStatus({ type: null, message: "" });
@@ -505,6 +799,15 @@ export default function DiagnosticForm() {
     const value = formData[field.name];
     const error = errors[field.name];
 
+    // Vérifier la condition
+    if (field.conditional) {
+      const [conditionField, conditionValue] = field.conditional.split(" === ");
+      const fieldValue = formData[conditionField.trim()];
+      if (fieldValue !== conditionValue.replace(/'/g, "").trim()) {
+        return null;
+      }
+    }
+
     switch (field.type) {
       case "textarea":
         return (
@@ -519,6 +822,7 @@ export default function DiagnosticForm() {
               placeholder={field.placeholder}
               className={`diagnostic-textarea ${error ? "error" : ""}`}
             />
+            {field.helpText && <p className="help-text">{field.helpText}</p>}
             {error && <p className="error-message">{error}</p>}
           </div>
         );
@@ -539,7 +843,7 @@ export default function DiagnosticForm() {
                 if (typeof option === "string") {
                   return (
                     <option key={option} value={option}>
-                      {option}
+                      {option === "" ? "-- Sélectionnez --" : option}
                     </option>
                   );
                 } else {
@@ -551,6 +855,7 @@ export default function DiagnosticForm() {
                 }
               })}
             </select>
+            {field.helpText && <p className="help-text">{field.helpText}</p>}
             {error && <p className="error-message">{error}</p>}
           </div>
         );
@@ -581,6 +886,7 @@ export default function DiagnosticForm() {
                 );
               })}
             </div>
+            {field.helpText && <p className="help-text">{field.helpText}</p>}
             {error && <p className="error-message">{error}</p>}
           </div>
         );
@@ -604,6 +910,9 @@ export default function DiagnosticForm() {
               {field.label}{" "}
               {field.required && <span className="required-star">*</span>}
             </label>
+            {field.helpText && (
+              <p className="help-text help-text-top">{field.helpText}</p>
+            )}
             {categories.length > 0 ? (
               <div className="checkbox-categories">
                 {categories.map((category) => (
@@ -689,6 +998,7 @@ export default function DiagnosticForm() {
               placeholder={field.placeholder}
               className={`diagnostic-input ${error ? "error" : ""}`}
             />
+            {field.helpText && <p className="help-text">{field.helpText}</p>}
             {error && <p className="error-message">{error}</p>}
           </div>
         );
@@ -816,7 +1126,7 @@ export default function DiagnosticForm() {
               disabled={loading}
               className="btn-submit"
             >
-              {loading ? "Envoi..." : "Envoyer le diagnostic"}
+              {loading ? "Envoi en cours..." : "Envoyer le diagnostic"}
               <Check className="btn-icon" />
             </button>
           )}

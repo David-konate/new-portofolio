@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "David Konaté Portfolio",
     images: [ // ← AJOUTÉ
       {
-        url: "/og-image.jpg", // ← Votre image
+        url: "/og-image.png", // ← Votre image
         width: 1200,
         height: 630,
         alt: "David Konaté - Développeur Full-Stack",

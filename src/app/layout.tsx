@@ -17,60 +17,76 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.david-konate.fr"), // ← AJOUTÉ
-  
-  title: "Portfolio - David Konaté | Développeur Full-Stack",
+  metadataBase: new URL("https://www.david-konate.fr"),
+
+  title: {
+    default: "Portfolio - David Konaté | Développeur Full-Stack",
+    template: "%s | David Konaté", // Pour les sous-pages
+  },
+
   description:
     "Découvrez le portfolio de David Konaté, développeur Full-Stack spécialisé en React, Next.js et Node.js. Explorez mes projets, compétences et réalisations.",
+
   keywords: [
     "David Konaté",
     "Développeur Full-Stack",
     "React",
     "Next.js",
-    "PhP",
+    "PHP",
     "Laravel",
-    "Symfony", // ← Corrigé l'orthographe
+    "Symfony",
     "Node.js",
     "Portfolio",
     "Web Developer",
   ],
+
   authors: [{ name: "David Konaté" }],
   creator: "David Konaté",
-  
+
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: "https://www.david-konate.fr",
     title: "Portfolio - David Konaté | Développeur Full-Stack",
     description:
-      "Développeur Full-Stack passionné par les technologies modernes",
+      "Développeur Full-Stack passionné par les technologies modernes : React, Next.js, PHP, Laravel, Symfony et Node.js",
     siteName: "David Konaté Portfolio",
-    images: [ // ← AJOUTÉ
+    images: [
       {
-        url: "/og-image.png", // ← Votre image
+        url: "/opengraph-image", // Next.js trouve automatiquement opengraph-image.png
         width: 1200,
         height: 630,
         alt: "David Konaté - Développeur Full-Stack",
       },
     ],
   },
-  
+
   twitter: {
     card: "summary_large_image",
     title: "Portfolio - David Konaté",
-    description: "Développeur Full-Stack | React, Next.js, Node.js",
-    images: ["/og-image.jpg"], // ← AJOUTÉ
+    description: "Développeur Full-Stack | React, Next.js, PHP, Node.js",
+    images: ["/opengraph-image"], // Même image que Open Graph
   },
-  
+
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
-  
-  // ← AJOUTÉ : Icônes
+
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/logo.png", // Votre logo.png comme icône Apple
+  },
+
+  verification: {
+    // google: "votre-code-google", // À ajouter plus tard
   },
 };
 

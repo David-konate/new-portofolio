@@ -74,7 +74,7 @@ async function sendEmail(data: ContactFormData): Promise<boolean> {
             },
             body: JSON.stringify({
                 from: process.env.EMAIL_FROM || "da.konate@gmail.fr",
-                to: process.env.CONTACT_EMAIL || "contact@david-konate.fr",
+                to: process.env.CONTACT_EMAIL || "da.konate@gmail.com",
                 subject: `💼 Nouveau message de contact: ${data.subject}`,
                 html: generateEmailHTML(data),
                 reply_to: data.email,
@@ -380,7 +380,7 @@ function generateEmailHTML(data: ContactFormData): string {
             
             <p style="text-align: center; font-size: 12px; color: #64748b; margin-top: 20px;">
               Ce message a été envoyé via le formulaire de contact de votre portfolio<br>
-              <strong style="color: #43d9ad;">contact@david-konate.fr</strong>
+              <strong style="color: #43d9ad;">da.konate@gmail.com</strong>
             </p>
           </div>
         </div>

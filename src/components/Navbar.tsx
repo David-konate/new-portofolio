@@ -42,18 +42,18 @@ const Navbar = () => {
             {/* Logo */}
             <Link
               href="/"
-              className="text-accent font-bold text-2xl transition-all duration-300 hover:scale-110"
+              className="navbar-logo text-accent font-bold text-2xl transition-all duration-300 hover:scale-110"
             >
               David Konaté
             </Link>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex gap-2">
+            {/* Desktop Menu - Visible uniquement sur grands écrans */}
+            <div className="desktop-menu">
               {links.map((link) => (
                 <Link
                   key={link.path}
                   href={link.path}
-                  className={`px-6 py-2 rounded-lg font-semibold text-base transition-all duration-300 ${
+                  className={`desktop-menu-link ${
                     isLinkActive(link.path)
                       ? "glass-button border-secondary text-secondary glow-secondary"
                       : "text-foreground hover:text-secondary"
@@ -64,10 +64,10 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Visible uniquement sur petits écrans */}
             <button
               onClick={toggleMenu}
-              className="md:hidden text-accent font-bold text-lg glass px-6 py-2 rounded-lg hover:text-secondary transition-all duration-300"
+              className="mobile-menu-button text-accent font-bold text-lg glass px-6 py-2 rounded-lg hover:text-secondary transition-all duration-300"
             >
               Menu
             </button>
@@ -80,12 +80,12 @@ const Navbar = () => {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
             onClick={closeMenu}
           />
 
           {/* Drawer */}
-          <div className="fixed top-0 left-0 h-full w-72 glass-card z-50 md:hidden transform transition-transform duration-300 ease-in-out">
+          <div className="fixed top-0 left-0 h-full w-72 glass-card z-50 transform transition-transform duration-300 ease-in-out">
             <div className="flex flex-col h-full p-8">
               {/* Close button */}
               <button

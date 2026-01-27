@@ -17,6 +17,7 @@
 }
 
 /* Logo */
+.navbar-logo,
 .glass-navbar a[href="/"] {
   font-family: "Montserrat", sans-serif;
   background: linear-gradient(
@@ -33,16 +34,52 @@
   font-weight: 700;
 }
 
+.navbar-logo:hover,
 .glass-navbar a[href="/"]:hover {
   transform: scale(1.08);
   filter: drop-shadow(0 0 12px rgba(67, 217, 173, 0.5));
 }
 
-/* Desktop Menu - More spacing */
-.glass-navbar .hidden {
-  display: flex;
+/* ====================================================
+   DESKTOP MENU - Visible sur grands écrans uniquement
+   ==================================================== */
+
+.desktop-menu {
+  display: none; /* Caché par défaut */
   gap: 2rem;
   align-items: center;
+}
+
+/* Afficher le menu desktop sur grands écrans (≥ 1024px) */
+@media (min-width: 1024px) {
+  .desktop-menu {
+    display: flex !important;
+  }
+}
+
+.desktop-menu-link {
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  text-decoration: none;
+}
+
+/* ====================================================
+   MOBILE MENU BUTTON - Visible sur petits écrans uniquement
+   ==================================================== */
+
+.mobile-menu-button {
+  display: block; /* Visible par défaut */
+}
+
+/* Cacher le bouton sur grands écrans (≥ 1024px) */
+@media (min-width: 1024px) {
+  .mobile-menu-button {
+    display: none !important;
+  }
 }
 
 /* Glassmorphism Button */
@@ -149,12 +186,12 @@
 
 /* Link Underline Animation */
 nav a,
-.glass-navbar a {
+.desktop-menu-link {
   position: relative;
 }
 
 nav a::after,
-.glass-navbar a::after {
+.desktop-menu-link::after {
   content: "";
   position: absolute;
   bottom: -4px;
@@ -166,8 +203,13 @@ nav a::after,
 }
 
 nav a:hover::after,
-.glass-navbar a:not([href="/"]):hover::after {
+.desktop-menu-link:hover::after {
   width: 100%;
+}
+
+/* Ne pas mettre de soulignement sur le logo */
+.navbar-logo::after {
+  display: none;
 }
 
 /* Active Link Indicator */
@@ -183,14 +225,14 @@ nav a.glass-button.border-secondary::after {
   box-shadow: 0 0 15px rgba(67, 217, 173, 0.5);
 }
 
-/* Mobile Menu Button - More spacing */
+/* Mobile Menu Button */
 button.glass {
   padding: 0.6rem 1rem;
   font-weight: 600;
   font-size: 1rem;
 }
 
-/* Mobile Drawer - More spacing */
+/* Mobile Drawer */
 .glass-card .flex.flex-col.h-full {
   padding: 2rem;
   gap: 2rem;
@@ -205,10 +247,24 @@ button.glass {
   border-radius: 10px;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
+/* ====================================================
+   RESPONSIVE ADJUSTMENTS
+   ==================================================== */
+
+/* Écrans moyens et petits (< 1024px) */
+@media (max-width: 1023px) {
   .glass-navbar {
-    padding: 0.75rem 0;
+    padding: 0.75rem 1rem;
+  }
+
+  /* S'assurer que le menu desktop est bien caché */
+  .desktop-menu {
+    display: none !important;
+  }
+
+  /* S'assurer que le bouton mobile est bien visible */
+  .mobile-menu-button {
+    display: block !important;
   }
 
   .glass-card {
@@ -226,5 +282,54 @@ button.glass {
   .glass-card nav a {
     font-size: 1.1rem;
     padding: 1.2rem 1.5rem;
+  }
+}
+
+/* Petits écrans (< 768px) */
+@media (max-width: 768px) {
+  .glass-navbar {
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbar-logo {
+    font-size: 1.1rem;
+  }
+
+  .glass-card {
+    max-width: 260px;
+  }
+}
+
+/* Très petits écrans (< 480px) */
+@media (max-width: 480px) {
+  .glass-navbar {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .navbar-logo {
+    font-size: 1rem;
+  }
+
+  button.glass,
+  .mobile-menu-button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .glass-card {
+    max-width: 100%;
+  }
+}
+
+/* Grands écrans (≥ 1024px) */
+@media (min-width: 1024px) {
+  /* S'assurer que le menu desktop est visible */
+  .desktop-menu {
+    display: flex !important;
+  }
+
+  /* S'assurer que le bouton mobile est caché */
+  .mobile-menu-button {
+    display: none !important;
   }
 }

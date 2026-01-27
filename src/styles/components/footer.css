@@ -1,4 +1,4 @@
-/* components/Footer.css */
+/* components/Footer.css - VERSION DÉFINITIVEMENT CORRIGÉE */
 
 .glass-footer {
   background: rgba(1, 22, 39, 0.7);
@@ -105,21 +105,26 @@
   color: var(--theme-secondary-color);
 }
 
-/* Social Links Section */
+/* Social Links Section - FORCÉ EN HORIZONTAL */
 .social-links {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
+  display: flex !important;
+  flex-direction: row !important; /* FORCÉ: direction horizontale */
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 2rem !important;
   margin-top: 2rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap !important; /* FORCÉ: pas de retour à la ligne */
+  width: 100%;
 }
 
 .social-link {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
   width: 50px;
   height: 50px;
+  min-width: 50px; /* Empêche la compression */
+  min-height: 50px; /* Empêche la compression */
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -129,6 +134,8 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  flex-shrink: 0; /* Empêche la réduction */
+  flex-grow: 0; /* Empêche l'expansion */
 }
 
 .social-link::before {
@@ -163,7 +170,10 @@
 .social-link svg {
   width: 24px;
   height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 /* Responsive Design */
@@ -186,17 +196,22 @@
   }
 
   .social-links {
-    gap: 1.5rem;
+    gap: 1.5rem !important;
+    flex-direction: row !important; /* FORCÉ même sur mobile */
   }
 
   .social-link {
     width: 45px;
     height: 45px;
+    min-width: 45px;
+    min-height: 45px;
   }
 
   .social-link svg {
     width: 20px;
     height: 20px;
+    min-width: 20px;
+    min-height: 20px;
   }
 
   .copyright-text {
@@ -220,16 +235,31 @@
   }
 
   .social-links {
-    gap: 1rem;
+    gap: 1.5rem !important; /* Plus d'espace sur mobile pour éviter que ce soit trop serré */
+    flex-direction: row !important; /* FORCÉ: toujours horizontal */
+    flex-wrap: nowrap !important; /* FORCÉ: pas de retour à la ligne */
   }
 
   .social-link {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .social-link svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
   }
+}
+
+/* Override pour forcer l'horizontal même si d'autres CSS interfèrent */
+.glass-footer .social-links {
+  flex-direction: row !important;
+}
+
+.glass-footer .social-links > * {
+  display: inline-flex !important;
 }

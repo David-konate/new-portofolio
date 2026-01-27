@@ -73,7 +73,7 @@ async function sendEmail(data: ContactFormData): Promise<boolean> {
                 Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
             },
             body: JSON.stringify({
-                from: process.env.EMAIL_FROM || "da.konate@gmail.fr",
+                from: process.env.EMAIL_FROM || "onboarding@resend.dev",
                 to: process.env.CONTACT_EMAIL || "da.konate@gmail.com",
                 subject: `💼 Nouveau message de contact: ${data.subject}`,
                 html: generateEmailHTML(data),

@@ -1,4 +1,3 @@
-// app/robots.ts
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
@@ -8,62 +7,40 @@ export default function robots(): MetadataRoute.Robots {
         rules: [
             {
                 userAgent: '*',
-                allow: '/',
+                allow: [
+                    '/',
+                    '/favicon.ico',           // Autorise explicitement le favicon
+                    '/icon.png',              // Autorise l'icône PNG (si tu en as une)
+                    '/opengraph-image.png',    // Autorise l'image de partage réseaux sociaux
+                    '/_next/static/media/',   // INDISPENSABLE : Autorise les images optimisées par Next.js
+                ],
                 disallow: [
-                    '/api/',           // Bloquer toutes les routes API
-                    '/admin/',         // Bloquer l'admin (si vous en avez)
-                    '/_next/',         // Bloquer les fichiers Next.js internes
-                    '/private/',       // Bloquer les dossiers privés (si vous en avez)
+                    '/_next/',                // Bloque le reste des fichiers internes
+                    '/api/',                  // Bloque les routes API
+                    '/admin/',                // Bloque l'accès admin
+                    '/private/',              // Bloque les dossiers privés
                 ],
             },
             {
-                userAgent: 'Googlebot',
+                userAgent: ['Googlebot', 'Bingbot'],
                 allow: '/',
-                crawlDelay: 0,     // Pas de délai pour Google
             },
             {
-                userAgent: 'Bingbot',
-                allow: '/',
-                crawlDelay: 0,
-            },
-            {
-                userAgent: 'baiduspider',  // Bloquer Baidu (si vous ne visez pas la Chine)
-                disallow: '/',
-            },
-            {
-                userAgent: 'YandexBot',    // Bloquer Yandex (si vous ne visez pas la Russie)
-                disallow: '/',
-            },
-            {
-                userAgent: 'GPTBot',       // Bloquer les crawlers IA (ChatGPT)
-                disallow: '/',
-            },
-            {
-                userAgent: 'ChatGPT-User', // Bloquer ChatGPT
-                disallow: '/',
-            },
-            {
-                userAgent: 'Google-Extended', // Bloquer Google Bard/Gemini
-                disallow: '/',
-            },
-            {
-                userAgent: 'anthropic-ai', // Bloquer Claude (Anthropic)
-                disallow: '/',
-            },
-            {
-                userAgent: 'PerplexityBot', // Bloquer Perplexity
-                disallow: '/',
-            },
-            {
-                userAgent: 'CCBot',        // Bloquer Common Crawl
-                disallow: '/',
-            },
-            {
-                userAgent: 'FacebookBot',  // Bloquer Facebook (optionnel)
+                // Bloque les bots d'IA et les crawlers étrangers pour économiser tes ressources
+                userAgent: [
+                    'GPTBot',
+                    'ChatGPT-User',
+                    'Google-Extended',
+                    'anthropic-ai',
+                    'PerplexityBot',
+                    'baiduspider',
+                    'YandexBot',
+                    'CCBot'
+                ],
                 disallow: '/',
             },
         ],
         sitemap: `${baseUrl}/sitemap.xml`,
-        host: baseUrl, // Domaine principal (évite duplicate content)
+        host: baseUrl,
     }
 }

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface FormErrors {
   [key: string]: string;
@@ -341,11 +342,17 @@ export default function ContactForm() {
                   className="form-checkbox"
                   required
                 />
-                <span>
+                <span className="consent-text">
                   J&apos;accepte que mes données personnelles soient traitées
                   conformément à la{" "}
-                  <strong>politique de confidentialité</strong>{" "}
-                  <span className="required">*</span>
+                  <Link
+                    href="/privacy"
+                    className="privacy-link"
+                    target="_blank"
+                  >
+                    politique de confidentialité
+                  </Link>{" "}
+                  <span className="required-star">*</span>
                 </span>
               </label>
               {formErrors.consent && (
@@ -392,10 +399,7 @@ export default function ContactForm() {
               <div className="contact-icon">📧</div>
               <div className="contact-info">
                 <h3>Email</h3>
-                <a
-                  href="mailto:da.konate@gmail.com"
-                  className="contact-link"
-                >
+                <a href="mailto:da.konate@gmail.com" className="contact-link">
                   da.konate@gmail.com
                 </a>
               </div>

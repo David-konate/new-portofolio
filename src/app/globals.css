@@ -3,6 +3,8 @@
 @import "tailwindcss";
 
 @import "../styles/pages/home.css";
+@import "../styles/pages/legal.css";
+@import "../styles/pages/privacy.css";
 @import "../styles/pages/not-found.css";
 @import "../styles/pages/about/bio.css";
 @import "../styles/pages/about/interest.css";

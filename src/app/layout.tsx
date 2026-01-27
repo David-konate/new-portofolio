@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
@@ -16,6 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.david-konate.fr"), // ← AJOUTÉ
+  
   title: "Portfolio - David Konaté | Développeur Full-Stack",
   description:
     "Découvrez le portfolio de David Konaté, développeur Full-Stack spécialisé en React, Next.js et Node.js. Explorez mes projets, compétences et réalisations.",
@@ -26,13 +29,14 @@ export const metadata: Metadata = {
     "Next.js",
     "PhP",
     "Laravel",
-    "Symfonie",
+    "Symfony", // ← Corrigé l'orthographe
     "Node.js",
     "Portfolio",
     "Web Developer",
   ],
   authors: [{ name: "David Konaté" }],
   creator: "David Konaté",
+  
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -41,15 +45,32 @@ export const metadata: Metadata = {
     description:
       "Développeur Full-Stack passionné par les technologies modernes",
     siteName: "David Konaté Portfolio",
+    images: [ // ← AJOUTÉ
+      {
+        url: "/og-image.jpg", // ← Votre image
+        width: 1200,
+        height: 630,
+        alt: "David Konaté - Développeur Full-Stack",
+      },
+    ],
   },
+  
   twitter: {
     card: "summary_large_image",
     title: "Portfolio - David Konaté",
     description: "Développeur Full-Stack | React, Next.js, Node.js",
+    images: ["/og-image.jpg"], // ← AJOUTÉ
   },
+  
   robots: {
     index: true,
     follow: true,
+  },
+  
+  // ← AJOUTÉ : Icônes
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 

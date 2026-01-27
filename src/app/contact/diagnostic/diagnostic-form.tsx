@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { ChevronRight, ChevronLeft, Check, AlertCircle } from "lucide-react";
+import Link from "next/link";
 
 interface FormField {
   name: string;
@@ -23,7 +24,7 @@ export default function DiagnosticForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [csrfToken, setCsrfToken] = useState<string>("");
   const [formData, setFormData] = useState<{
-    [key: string]: string | string[];
+    [key: string]: string | string[] | boolean;
   }>({
     // Section 1: Informations générales
     nom_projet: "",
@@ -70,6 +71,9 @@ export default function DiagnosticForm() {
 
     date_lancement: "",
     flexibilite_date: "",
+
+    // Consentement RGPD
+    consent: false,
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -359,7 +363,7 @@ export default function DiagnosticForm() {
     },
   ];
 
-  const handleChange = (name: string, value: string) => {
+  const handleChange = (name: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
       setErrors((prev) => {
@@ -389,6 +393,13 @@ export default function DiagnosticForm() {
         newErrors[field.name] = "Ce champ est obligatoire";
       }
     });
+
+    // Validation spéciale pour la dernière étape (consentement RGPD)
+    if (currentStep === sections.length - 1) {
+      if (!formData.consent) {
+        newErrors.consent = "Vous devez accepter le traitement de vos données";
+      }
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -470,6 +481,7 @@ export default function DiagnosticForm() {
             modele_revenus: [],
             date_lancement: "",
             flexibilite_date: "",
+            consent: false,
           });
           setSubmitStatus({ type: null, message: "" });
         }, 5000);
@@ -502,7 +514,7 @@ export default function DiagnosticForm() {
               {field.required && <span className="required-star">*</span>}
             </label>
             <textarea
-              value={value || ""}
+              value={(value as string) || ""}
               onChange={(e) => handleChange(field.name, e.target.value)}
               placeholder={field.placeholder}
               className={`diagnostic-textarea ${error ? "error" : ""}`}
@@ -519,7 +531,7 @@ export default function DiagnosticForm() {
               {field.required && <span className="required-star">*</span>}
             </label>
             <select
-              value={value || ""}
+              value={(value as string) || ""}
               onChange={(e) => handleChange(field.name, e.target.value)}
               className={`diagnostic-select ${error ? "error" : ""}`}
             >
@@ -615,7 +627,9 @@ export default function DiagnosticForm() {
                             >
                               <input
                                 type="checkbox"
-                                checked={(value || []).includes(option.value)}
+                                checked={((value as string[]) || []).includes(
+                                  option.value,
+                                )}
                                 onChange={() =>
                                   handleCheckboxChange(field.name, option.value)
                                 }
@@ -644,7 +658,9 @@ export default function DiagnosticForm() {
                       <label key={option.value} className="checkbox-label">
                         <input
                           type="checkbox"
-                          checked={(value || []).includes(option.value)}
+                          checked={((value as string[]) || []).includes(
+                            option.value,
+                          )}
                           onChange={() =>
                             handleCheckboxChange(field.name, option.value)
                           }
@@ -668,7 +684,7 @@ export default function DiagnosticForm() {
             </label>
             <input
               type={field.type}
-              value={value || ""}
+              value={(value as string) || ""}
               onChange={(e) => handleChange(field.name, e.target.value)}
               placeholder={field.placeholder}
               className={`diagnostic-input ${error ? "error" : ""}`}
@@ -742,6 +758,41 @@ export default function DiagnosticForm() {
 
           <div className="form-fields">
             {sections[currentStep].fields.map((field) => renderField(field))}
+
+            {/* Consentement RGPD - Affiché uniquement à la dernière étape */}
+            {currentStep === sections.length - 1 && (
+              <div className="diagnostic-field consent-field">
+                <label
+                  className={`checkbox-label consent-label ${errors.consent ? "error" : ""}`}
+                >
+                  <input
+                    type="checkbox"
+                    name="consent"
+                    checked={formData.consent as boolean}
+                    onChange={(e) => handleChange("consent", e.target.checked)}
+                    className="checkbox-input"
+                    required
+                  />
+                  <span className="consent-text">
+                    J&apos;accepte que mes données personnelles soient traitées
+                    conformément à la{" "}
+                    <Link
+                      href="/privacy"
+                      className="privacy-link"
+                      target="_blank"
+                    >
+                      politique de confidentialité
+                    </Link>{" "}
+                    <span className="required-star">*</span>
+                  </span>
+                </label>
+                {errors.consent && (
+                  <p className="error-message consent-error">
+                    {errors.consent}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         </div>
 

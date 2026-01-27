@@ -13,7 +13,7 @@ const DiagnosticFormSchema = z.object({
   site_web: z.string().optional(),
   email: z.string().email("Email invalide"),
   telephone: z.string().min(10, "Numéro de téléphone invalide"),
-  
+
   // Section 2: Contexte
   description_activite: z.string().min(10, "Description trop courte"),
   presence_digitale: z.string().optional(),
@@ -22,7 +22,7 @@ const DiagnosticFormSchema = z.object({
   objectif_autre: z.string().optional(),
   problemes_resolus: z.string().min(10, "Problèmes à résoudre requis"),
   resultats_attendus: z.string().optional(),
-  
+
   // Section 3: Utilisateurs
   age_utilisateurs: z.string().min(1, "Tranche d'âge requise"),
   profession_utilisateurs: z.string().min(1, "Profession requise"),
@@ -32,53 +32,53 @@ const DiagnosticFormSchema = z.object({
   users_1an: z.string().optional(),
   acces_actuel: z.string().optional(),
   frustrations: z.string().optional(),
-  
+
   // Section 4: Fonctionnalités
   fonctionnalites: z.array(z.string()),
   autres_fonctionnalites: z.string().optional(),
   parcours_utilisateur: z.string().min(10, "Parcours utilisateur requis"),
-  
+
   // Section 5: Design
   charte_graphique: z.string().optional(),
   couleurs: z.string().optional(),
   logo: z.string().optional(),
   styles: z.array(z.string()),
   apps_reference: z.string().optional(),
-  
+
   // Section 6: Contenu
   types_contenu: z.array(z.string()),
   creation_contenu: z.string().optional(),
   gestion_contenu: z.string().optional(),
   frequence_maj: z.string().optional(),
-  
+
   // Section 7: Technique
   plateformes: z.array(z.string()).min(1, "Au moins une plateforme requise"),
   priorite_plateformes: z.string().optional(),
   integrations: z.string().optional(),
   donnees_sensibles: z.string().optional(),
-  
+
   // Section 8: Budget
   budget: z.string().min(1, "Budget requis"),
   modele_revenus: z.array(z.string()),
-  
+
   // Section 9: Planning
   date_lancement: z.string().optional(),
   flexibilite_date: z.string().optional(),
   dates_cles: z.string().optional(),
   disponibilite: z.string().optional(),
-  
+
   // Section 10: Maintenance
   maintenance: z.string().optional(),
   formation: z.string().optional(),
-  
+
   // Section 11: Concurrence
   concurrents: z.string().optional(),
   avantages: z.string().optional(),
-  
+
   // Section 12: Complémentaires
   contraintes: z.string().optional(),
   questions_supplementaires: z.string().optional(),
-  
+
   timestamp: z.string().datetime(),
 });
 
@@ -309,12 +309,16 @@ function generateEmailHTML(data: DiagnosticFormData): string {
                 <span class="label">Secteur</span>
                 <span class="value">${escapeHtml(data.secteur)}</span>
               </div>
-              ${data.site_web ? `
+              ${
+                data.site_web
+                  ? `
               <div class="field">
                 <span class="label">Site web</span>
                 <span class="value"><a href="${escapeHtml(data.site_web)}">${escapeHtml(data.site_web)}</a></span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
               <div class="field">
                 <span class="label">Email</span>
                 <span class="value"><a href="mailto:${data.email}">${data.email}</a></span>
@@ -332,12 +336,16 @@ function generateEmailHTML(data: DiagnosticFormData): string {
                 <span class="label">Description de l'activité</span>
                 <span class="value">${escapeHtml(data.description_activite)}</span>
               </div>
-              ${data.presence_digitale ? `
+              ${
+                data.presence_digitale
+                  ? `
               <div class="field">
                 <span class="label">Présence digitale actuelle</span>
                 <span class="value">${escapeHtml(data.presence_digitale)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
               <div class="field">
                 <span class="label">Motivation</span>
                 <span class="value">${escapeHtml(data.motivation)}</span>
@@ -346,22 +354,30 @@ function generateEmailHTML(data: DiagnosticFormData): string {
                 <span class="label">Objectif principal</span>
                 <span class="value">${escapeHtml(data.objectif_principal)}</span>
               </div>
-              ${data.objectif_autre ? `
+              ${
+                data.objectif_autre
+                  ? `
               <div class="field">
                 <span class="label">Autre objectif</span>
                 <span class="value">${escapeHtml(data.objectif_autre)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
               <div class="field">
                 <span class="label">Problèmes à résoudre</span>
                 <span class="value">${escapeHtml(data.problemes_resolus)}</span>
               </div>
-              ${data.resultats_attendus ? `
+              ${
+                data.resultats_attendus
+                  ? `
               <div class="field">
                 <span class="label">Résultats attendus</span>
                 <span class="value">${escapeHtml(data.resultats_attendus)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
 
             <!-- SECTION 3: Utilisateurs cibles -->
@@ -379,55 +395,83 @@ function generateEmailHTML(data: DiagnosticFormData): string {
                 <span class="label">Zone géographique</span>
                 <span class="value">${escapeHtml(data.zone_geo)}</span>
               </div>
-              ${data.competence_tech ? `
+              ${
+                data.competence_tech
+                  ? `
               <div class="field">
                 <span class="label">Compétence technologique</span>
                 <span class="value">${escapeHtml(data.competence_tech)}</span>
               </div>
-              ` : ""}
-              ${data.users_6mois ? `
+              `
+                  : ""
+              }
+              ${
+                data.users_6mois
+                  ? `
               <div class="field">
                 <span class="label">Utilisateurs estimés à 6 mois</span>
                 <span class="value">${escapeHtml(data.users_6mois)}</span>
               </div>
-              ` : ""}
-              ${data.users_1an ? `
+              `
+                  : ""
+              }
+              ${
+                data.users_1an
+                  ? `
               <div class="field">
                 <span class="label">Utilisateurs estimés à 1 an</span>
                 <span class="value">${escapeHtml(data.users_1an)}</span>
               </div>
-              ` : ""}
-              ${data.acces_actuel ? `
+              `
+                  : ""
+              }
+              ${
+                data.acces_actuel
+                  ? `
               <div class="field">
                 <span class="label">Accès actuel aux services</span>
                 <span class="value">${escapeHtml(data.acces_actuel)}</span>
               </div>
-              ` : ""}
-              ${data.frustrations ? `
+              `
+                  : ""
+              }
+              ${
+                data.frustrations
+                  ? `
               <div class="field">
                 <span class="label">Frustrations des utilisateurs</span>
                 <span class="value">${escapeHtml(data.frustrations)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
 
             <!-- SECTION 4: Fonctionnalités -->
             <div class="section">
               <h2 class="section-title">⚙️ Fonctionnalités</h2>
-              ${data.fonctionnalites.length > 0 ? `
+              ${
+                data.fonctionnalites.length > 0
+                  ? `
               <div class="field">
                 <span class="label">Fonctionnalités souhaitées</span>
                 <div class="list-value">
                   ${data.fonctionnalites.map((f) => `<span class="tag">${escapeHtml(f)}</span>`).join("")}
                 </div>
               </div>
-              ` : ""}
-              ${data.autres_fonctionnalites ? `
+              `
+                  : ""
+              }
+              ${
+                data.autres_fonctionnalites
+                  ? `
               <div class="field">
                 <span class="label">Autres fonctionnalités</span>
                 <span class="value">${escapeHtml(data.autres_fonctionnalites)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
               <div class="field">
                 <span class="label">Parcours utilisateur</span>
                 <span class="value">${escapeHtml(data.parcours_utilisateur)}</span>
@@ -437,100 +481,152 @@ function generateEmailHTML(data: DiagnosticFormData): string {
             <!-- SECTION 5: Design -->
             <div class="section">
               <h2 class="section-title">🎨 Design et expérience</h2>
-              ${data.charte_graphique ? `
+              ${
+                data.charte_graphique
+                  ? `
               <div class="field">
                 <span class="label">Charte graphique</span>
                 <span class="value">${escapeHtml(data.charte_graphique)}</span>
               </div>
-              ` : ""}
-              ${data.couleurs ? `
+              `
+                  : ""
+              }
+              ${
+                data.couleurs
+                  ? `
               <div class="field">
                 <span class="label">Couleurs principales</span>
                 <span class="value">${escapeHtml(data.couleurs)}</span>
               </div>
-              ` : ""}
-              ${data.logo ? `
+              `
+                  : ""
+              }
+              ${
+                data.logo
+                  ? `
               <div class="field">
                 <span class="label">Logo</span>
                 <span class="value">${escapeHtml(data.logo)}</span>
               </div>
-              ` : ""}
-              ${data.styles.length > 0 ? `
+              `
+                  : ""
+              }
+              ${
+                data.styles.length > 0
+                  ? `
               <div class="field">
                 <span class="label">Styles préférés</span>
                 <div class="list-value">
                   ${data.styles.map((s) => `<span class="tag">${escapeHtml(s)}</span>`).join("")}
                 </div>
               </div>
-              ` : ""}
-              ${data.apps_reference ? `
+              `
+                  : ""
+              }
+              ${
+                data.apps_reference
+                  ? `
               <div class="field">
                 <span class="label">Applications de référence</span>
                 <span class="value">${escapeHtml(data.apps_reference)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
 
             <!-- SECTION 6: Contenu -->
             <div class="section">
               <h2 class="section-title">📝 Contenu</h2>
-              ${data.types_contenu.length > 0 ? `
+              ${
+                data.types_contenu.length > 0
+                  ? `
               <div class="field">
                 <span class="label">Types de contenu</span>
                 <div class="list-value">
                   ${data.types_contenu.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
                 </div>
               </div>
-              ` : ""}
-              ${data.creation_contenu ? `
+              `
+                  : ""
+              }
+              ${
+                data.creation_contenu
+                  ? `
               <div class="field">
                 <span class="label">Création du contenu</span>
                 <span class="value">${escapeHtml(data.creation_contenu)}</span>
               </div>
-              ` : ""}
-              ${data.gestion_contenu ? `
+              `
+                  : ""
+              }
+              ${
+                data.gestion_contenu
+                  ? `
               <div class="field">
                 <span class="label">Gestion du contenu</span>
                 <span class="value">${escapeHtml(data.gestion_contenu)}</span>
               </div>
-              ` : ""}
-              ${data.frequence_maj ? `
+              `
+                  : ""
+              }
+              ${
+                data.frequence_maj
+                  ? `
               <div class="field">
                 <span class="label">Fréquence de mise à jour</span>
                 <span class="value">${escapeHtml(data.frequence_maj)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
 
             <!-- SECTION 7: Technique -->
             <div class="section">
               <h2 class="section-title">💻 Aspects techniques</h2>
-              ${data.plateformes.length > 0 ? `
+              ${
+                data.plateformes.length > 0
+                  ? `
               <div class="field">
                 <span class="label">Plateformes</span>
                 <div class="list-value">
                   ${data.plateformes.map((p) => `<span class="tag">${escapeHtml(p)}</span>`).join("")}
                 </div>
               </div>
-              ` : ""}
-              ${data.priorite_plateformes ? `
+              `
+                  : ""
+              }
+              ${
+                data.priorite_plateformes
+                  ? `
               <div class="field">
                 <span class="label">Priorité des plateformes</span>
                 <span class="value">${escapeHtml(data.priorite_plateformes)}</span>
               </div>
-              ` : ""}
-              ${data.integrations ? `
+              `
+                  : ""
+              }
+              ${
+                data.integrations
+                  ? `
               <div class="field">
                 <span class="label">Intégrations</span>
                 <span class="value">${escapeHtml(data.integrations)}</span>
               </div>
-              ` : ""}
-              ${data.donnees_sensibles ? `
+              `
+                  : ""
+              }
+              ${
+                data.donnees_sensibles
+                  ? `
               <div class="field">
                 <span class="label">Données sensibles</span>
                 <span class="value">${escapeHtml(data.donnees_sensibles)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
 
             <!-- SECTION 8: Budget -->
@@ -540,97 +636,145 @@ function generateEmailHTML(data: DiagnosticFormData): string {
                 <span class="label">Budget envisagé</span>
                 <span class="value">${escapeHtml(data.budget)}</span>
               </div>
-              ${data.modele_revenus.length > 0 ? `
+              ${
+                data.modele_revenus.length > 0
+                  ? `
               <div class="field">
                 <span class="label">Modèle de revenus</span>
                 <div class="list-value">
                   ${data.modele_revenus.map((m) => `<span class="tag">${escapeHtml(m)}</span>`).join("")}
                 </div>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
 
             <!-- SECTION 9: Planning -->
             <div class="section">
               <h2 class="section-title">📅 Planning</h2>
-              ${data.date_lancement ? `
+              ${
+                data.date_lancement
+                  ? `
               <div class="field">
                 <span class="label">Date de lancement souhaitée</span>
                 <span class="value">${escapeHtml(data.date_lancement)}</span>
               </div>
-              ` : ""}
-              ${data.flexibilite_date ? `
+              `
+                  : ""
+              }
+              ${
+                data.flexibilite_date
+                  ? `
               <div class="field">
                 <span class="label">Flexibilité de la date</span>
                 <span class="value">${escapeHtml(data.flexibilite_date)}</span>
               </div>
-              ` : ""}
-              ${data.dates_cles ? `
+              `
+                  : ""
+              }
+              ${
+                data.dates_cles
+                  ? `
               <div class="field">
                 <span class="label">Dates clés</span>
                 <span class="value">${escapeHtml(data.dates_cles)}</span>
               </div>
-              ` : ""}
-              ${data.disponibilite ? `
+              `
+                  : ""
+              }
+              ${
+                data.disponibilite
+                  ? `
               <div class="field">
                 <span class="label">Disponibilité du client</span>
                 <span class="value">${escapeHtml(data.disponibilite)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
 
             <!-- SECTION 10: Maintenance -->
             <div class="section">
               <h2 class="section-title">🔧 Maintenance et formation</h2>
-              ${data.maintenance ? `
+              ${
+                data.maintenance
+                  ? `
               <div class="field">
                 <span class="label">Maintenance</span>
                 <span class="value">${escapeHtml(data.maintenance)}</span>
               </div>
-              ` : ""}
-              ${data.formation ? `
+              `
+                  : ""
+              }
+              ${
+                data.formation
+                  ? `
               <div class="field">
                 <span class="label">Formation</span>
                 <span class="value">${escapeHtml(data.formation)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
 
             <!-- SECTION 11: Concurrence -->
             <div class="section">
               <h2 class="section-title">🎯 Concurrence et positionnement</h2>
-              ${data.concurrents ? `
+              ${
+                data.concurrents
+                  ? `
               <div class="field">
                 <span class="label">Concurrents</span>
                 <span class="value">${escapeHtml(data.concurrents)}</span>
               </div>
-              ` : ""}
-              ${data.avantages ? `
+              `
+                  : ""
+              }
+              ${
+                data.avantages
+                  ? `
               <div class="field">
                 <span class="label">Avantages concurrentiels</span>
                 <span class="value">${escapeHtml(data.avantages)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
 
             <!-- SECTION 12: Complémentaires -->
-            ${(data.contraintes || data.questions_supplementaires) ? `
+            ${
+              data.contraintes || data.questions_supplementaires
+                ? `
             <div class="section">
               <h2 class="section-title">➕ Informations complémentaires</h2>
-              ${data.contraintes ? `
+              ${
+                data.contraintes
+                  ? `
               <div class="field">
                 <span class="label">Contraintes</span>
                 <span class="value">${escapeHtml(data.contraintes)}</span>
               </div>
-              ` : ""}
-              ${data.questions_supplementaires ? `
+              `
+                  : ""
+              }
+              ${
+                data.questions_supplementaires
+                  ? `
               <div class="field">
                 <span class="label">Questions / Éléments supplémentaires</span>
                 <span class="value">${escapeHtml(data.questions_supplementaires)}</span>
               </div>
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
-            ` : ""}
+            `
+                : ""
+            }
 
             <div style="text-align: center; margin-top: 40px;">
               <a href="mailto:${data.email}" class="cta-button">
@@ -641,7 +785,9 @@ function generateEmailHTML(data: DiagnosticFormData): string {
           
           <div class="footer">
             <p style="text-align: center; font-size: 14px; color: #94a3b8;">
-              <strong>📅 Reçu le:</strong> ${new Date(data.timestamp).toLocaleString("fr-FR", {
+              <strong>📅 Reçu le:</strong> ${new Date(
+                data.timestamp,
+              ).toLocaleString("fr-FR", {
                 dateStyle: "full",
                 timeStyle: "short",
               })}

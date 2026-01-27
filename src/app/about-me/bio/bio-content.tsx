@@ -3,7 +3,10 @@
 import React from "react";
 import Image from "next/image";
 
+
 export default function BioContent() {
+
+  const age = new Date().getFullYear() - 1988; // Calcul de l'âge en fonction de l'année actuelle
   return (
     <div className="bio-container">
       <div className="bio-content">
@@ -19,7 +22,7 @@ export default function BioContent() {
 
         <p className="bio-paragraph">
           Concepteur développeur d&apos;applications passionné par la
-          technologie et la création. Je suis un père de famille de 38 ans,
+          technologie et la création. Je suis un père de famille de {age} ans,
           originaire de Paris et désormais établi dans la région nantaise. Mon
           parcours académique riche, comprenant un bac STG, un BTS MUC, une
           formation en développement web et mobile de niveau bac +2, et un bac

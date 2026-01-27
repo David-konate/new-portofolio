@@ -9,10 +9,10 @@ const sidebarSections = {
   about: {
     title: "Qui suis-je?",
     pages: [
-      { label: "Overview", path: "/about", icon: "📋" },
-      { label: "Bio", path: "/about/bio", icon: "👤" },
-      { label: "Intérêts", path: "/about/interest", icon: "🎯" },
-      { label: "Qualification", path: "/about/qualification", icon: "🎓" },
+      { label: "Overview", path: "/about-me", icon: "📋" },
+      { label: "Bio", path: "/about-me/bio", icon: "👤" },
+      { label: "Intérêts", path: "/about-me/interest", icon: "🎯" },
+      { label: "Qualification", path: "/about-me/qualification", icon: "🎓" },
     ],
   },
   work: {

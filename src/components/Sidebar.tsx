@@ -21,7 +21,7 @@ const sidebarSections = {
       { label: "Overview", path: "/work", icon: "📋" },
       { label: "Technologie", path: "/work/technologies", icon: "⚙️" },
       { label: "Développeur", path: "/work/developeur", icon: "💻" },
-      { label: "Projets", path: "/work/projects", icon: "📁" },
+      { label: "Concepteur-dev", path: "/work/projects", icon: "📁" },
     ],
   },
 };

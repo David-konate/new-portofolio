@@ -71,7 +71,7 @@ async function sendEmail(data: DiagnosticFormData): Promise<boolean> {
         },
         body: JSON.stringify({
           from: process.env.EMAIL_FROM || "onboarding@resend.dev",
-          to: process.env.CONTACT_EMAIL || "da.konate@gmail.com",
+          to: process.env.CONTACT_EMAIL || "contact@david-konate.fr",
           subject: `🎯 Nouveau diagnostic de projet: ${data.nom_projet}`,
           html: generateEmailHTML(data),
           reply_to: data.email,
@@ -399,7 +399,7 @@ function generateEmailHTML(data: DiagnosticFormData): string {
             <hr class="divider">
             <p style="text-align: center; font-size: 12px; color: #64748b;">
               Diagnostic envoyé via le formulaire de diagnostic<br>
-              <strong style="color: #43d9ad;">da.konate@gmail.com</strong>
+              <strong style="color: #43d9ad;">contact@david-konate.fr</strong>
             </p>
           </div>
         </div>

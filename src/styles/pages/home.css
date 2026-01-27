@@ -29,17 +29,47 @@
   animation: slideInLeft 0.8s ease-out;
 }
 
+/* Effet typing pour chaque élément */
 .left-text > * {
   opacity: 0;
-  animation: fadeInUp 0.6s ease-out forwards;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.left-text > *:nth-child(1) { animation-delay: 0s; }
-.left-text > *:nth-child(2) { animation-delay: 0.5s; }
-.left-text > *:nth-child(3) { animation-delay: 1s; }
-.left-text > *:nth-child(4) { animation-delay: 1.5s; }
-.left-text > *:nth-child(5) { animation-delay: 2s; }
-.left-text > *:nth-child(6) { animation-delay: 2.5s; }
+/* Délais progressifs avec effet typewriter */
+.left-text > *:nth-child(1) { 
+  animation: typewriter 1s steps(30) 0.2s forwards, fadeIn 0.1s 0.2s forwards;
+}
+.left-text > *:nth-child(2) { 
+  animation: typewriter 1.5s steps(40) 1.5s forwards, fadeIn 0.1s 1.5s forwards;
+}
+.left-text > *:nth-child(3) { 
+  animation: typewriter 1.2s steps(35) 3.2s forwards, fadeIn 0.1s 3.2s forwards;
+}
+.left-text > *:nth-child(4) { 
+  animation: typewriter 1.5s steps(40) 4.6s forwards, fadeIn 0.1s 4.6s forwards;
+}
+.left-text > *:nth-child(5) { 
+  animation: typewriter 1.5s steps(40) 6.3s forwards, fadeIn 0.1s 6.3s forwards;
+}
+.left-text > *:nth-child(6) { 
+  animation: typewriter 1.2s steps(35) 8s forwards, fadeIn 0.1s 8s forwards;
+}
+.left-text > *:nth-child(7) { 
+  animation: typewriter 1s steps(30) 9.4s forwards, fadeIn 0.1s 9.4s forwards;
+}
+.left-text > *:nth-child(8) { 
+  animation: typewriter 2s steps(50) 10.6s forwards, fadeIn 0.1s 10.6s forwards;
+}
+.left-text > *:nth-child(9) { 
+  animation: typewriter 1.2s steps(35) 12.8s forwards, fadeIn 0.1s 12.8s forwards;
+}
+.left-text > *:nth-child(10) { 
+  animation: typewriter 2s steps(60) 14.2s forwards, fadeIn 0.1s 14.2s forwards;
+}
+.left-text > *:nth-child(11) { 
+  animation: typewriter 1.5s steps(45) 16.4s forwards, fadeIn 0.1s 16.4s forwards;
+}
 
 /* Right Section */
 .right-game {
@@ -68,6 +98,21 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
 }
 

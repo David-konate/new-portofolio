@@ -19,14 +19,14 @@ export default function WorkPage() {
       title: "Développeur",
       icon: "💻",
       description: "Mes projets en tant que développeur",
-      route: "/work/developer",
+      route: "/work/developeur",
     },
     {
       id: "designer-developer",
       title: "Concepteur Développeur",
       icon: "🎨",
       description: "Projets alliant design et développement",
-      route: "/work/concepteur-developpeur",
+      route: "/work/projects",
     },
   ];
 

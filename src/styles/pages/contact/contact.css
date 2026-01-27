@@ -42,7 +42,6 @@
   font-weight: 700;
   margin-bottom: 1rem;
   animation: fadeInUp 0.6s ease-out;
-  color: var(--theme-text-color);
 }
 
 @keyframes fadeInUp {
@@ -272,6 +271,18 @@ select.form-input {
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
+  
+}
+/* Dans votre fichier contact.css */
+
+/* Couleur du texte du select */
+/* select.form-input {
+  background-color: var(--theme-secondary-color);
+} */
+
+/* Couleur du texte des options */
+select.form-input option {
+  background-color: var( --theme-primary-color-back);
 }
 
 /* Checkbox */

@@ -71,7 +71,7 @@ async function sendEmail(data: DiagnosticFormData): Promise<boolean> {
         },
         body: JSON.stringify({
           from: process.env.EMAIL_FROM || "onboarding@resend.dev",
-          to: process.env.CONTACT_EMAIL || "da.konate@gmail.fr",
+          to: process.env.CONTACT_EMAIL || "da.konate@gmail.com",
           subject: `🎯 Nouveau diagnostic de projet: ${data.nom_projet}`,
           html: generateEmailHTML(data),
           reply_to: data.email,

@@ -1,6 +1,12 @@
-/* components/Footer.css - VERSION DÉFINITIVEMENT CORRIGÉE */
+/* components/Footer.css - VERSION PLEINE LARGEUR GARANTIE */
 
 .glass-footer {
+  /* FORCER la pleine largeur même dans un conteneur parent */
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
+  
   background: rgba(1, 22, 39, 0.7);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -105,15 +111,15 @@
   color: var(--theme-secondary-color);
 }
 
-/* Social Links Section - FORCÉ EN HORIZONTAL */
+/* Social Links Section */
 .social-links {
   display: flex !important;
-  flex-direction: row !important; /* FORCÉ: direction horizontale */
+  flex-direction: row !important;
   justify-content: center !important;
   align-items: center !important;
   gap: 2rem !important;
   margin-top: 2rem;
-  flex-wrap: nowrap !important; /* FORCÉ: pas de retour à la ligne */
+  flex-wrap: nowrap !important;
   width: 100%;
 }
 
@@ -123,8 +129,8 @@
   justify-content: center;
   width: 50px;
   height: 50px;
-  min-width: 50px; /* Empêche la compression */
-  min-height: 50px; /* Empêche la compression */
+  min-width: 50px;
+  min-height: 50px;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -134,8 +140,8 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  flex-shrink: 0; /* Empêche la réduction */
-  flex-grow: 0; /* Empêche l'expansion */
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .social-link::before {
@@ -197,7 +203,7 @@
 
   .social-links {
     gap: 1.5rem !important;
-    flex-direction: row !important; /* FORCÉ même sur mobile */
+    flex-direction: row !important;
   }
 
   .social-link {
@@ -235,9 +241,9 @@
   }
 
   .social-links {
-    gap: 1.5rem !important; /* Plus d'espace sur mobile pour éviter que ce soit trop serré */
-    flex-direction: row !important; /* FORCÉ: toujours horizontal */
-    flex-wrap: nowrap !important; /* FORCÉ: pas de retour à la ligne */
+    gap: 1.5rem !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
   }
 
   .social-link {

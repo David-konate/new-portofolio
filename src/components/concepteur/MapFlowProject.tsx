@@ -43,9 +43,8 @@ export default function MapFlowProject() {
   const technologies = [
     { src: "/projects/react.png", name: "React" },
     { src: "/projects/react-native.png", name: "React Native" },
-    { src: "/projects/spring.png", name: "Spring Boot" },
-    { src: "/projects/postgres.png", name: "PostgreSQL" },
-    { src: "/projects/postgis.png", name: "PostGIS" },
+    { src: "/projects/spring-boot.png", name: "Spring Boot" },
+    { src: "/projects/postgres-logo.png", name: "PostgreSQL" },
     { src: "/projects/docker.png", name: "Docker" },
     { src: "/projects/mapbox.png", name: "Mapbox" },
   ];

@@ -40,7 +40,7 @@ export default function TCCProject() {
     { name: "Next.js / React", src: "/projects/react.png" },
     { name: "TypeScript", src: "/projects/typescript.png" },
     { name: "Tailwind CSS", src: "/projects/tailwind.jpg" },
-    { name: "Node.js", src: "/projects/node.png" },
+    { name: "Node.js", src: "/projects/node.webp" },
     { name: "PostgreSQL / Firebase", src: "/projects/sql.avif" },
   ];
 

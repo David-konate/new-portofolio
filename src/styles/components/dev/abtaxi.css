@@ -149,7 +149,8 @@
     var(--theme-primary-color),
     var(--theme-secondary-color)
   );
-  color: var(--theme-text-color);
+   color: var(--theme-text-color);
+
   border-radius: 8px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;

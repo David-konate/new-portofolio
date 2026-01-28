@@ -26,6 +26,15 @@ export default function BallnConnectProject() {
     "Mise en place de la navigation entre les différentes pages de l'application.",
   ];
 
+  const technologies = [
+    { src: "/projects/react.png", name: "React" },
+    { src: "/projects/react-native.png", name: "React Native" },
+    { src: "/projects/node.webp", name: "Node.js" },
+    { src: "/projects/graphQl.png", name: "GraphQl" },
+    { src: "/projects/mongoDB.jpg", name: "MongoDB" },
+    { src: "/projects/cloudinary.png", name: "Cloudinary" },
+  ];
+
   useEffect(() => {
     setDisplayedText("");
     setIsTyping(true);
@@ -114,16 +123,18 @@ export default function BallnConnectProject() {
         <div className="project-technologies">
           <h2 className="technologies-title">Technologies utilisées</h2>
           <div className="technologies-grid">
-            <div className="technology-item">
-              <Image
-                src="/projects/kotlin.webp"
-                alt="Kotlin"
-                width={119}
-                height={81}
-                className="tech-logo"
-              />
-              <p className="tech-name">Kotlin</p>
-            </div>
+            {technologies.map((tech, index) => (
+              <div key={index} className="technology-item">
+                <Image
+                  src={tech.src}
+                  alt={tech.name}
+                  width={119}
+                  height={81}
+                  className="tech-logo"
+                />
+                <p className="tech-name">{tech.name}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

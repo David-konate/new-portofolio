@@ -186,6 +186,7 @@
 .project-link-container {
   text-align: center;
   margin: 3rem 0;
+  color: var(--theme-text-color);
 }
 
 .project-link {
@@ -196,7 +197,7 @@
     var(--quiz-primary) 0%,
     var(--quiz-secondary) 100%
   );
-  color: var(--theme-primary-color-back);
+  color: var(--theme-text-color);
   border-radius: 50px;
   font-size: 1.1rem;
   font-weight: 600;

@@ -194,7 +194,8 @@
     var(--calendar-primary) 0%,
     var(--calendar-secondary) 100%
   );
-  color: var(--theme-primary-color-back);
+   color: var(--theme-text-color);
+;
   border-radius: 50px;
   font-size: 1.1rem;
   font-weight: 600;

@@ -5,7 +5,6 @@
   min-height: 100vh;
   padding: 3rem 1rem;
   animation: fadeIn 0.8s ease-out;
-  margin-top: 5rem;
 }
 
 @keyframes fadeIn {

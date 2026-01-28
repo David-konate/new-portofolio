@@ -3,7 +3,7 @@
 .qualification-container {
   width: 100%;
   animation: fadeIn 0.8s ease-out;
-  margin-top: 10rem;
+  padding: 3rem 1rem;
 }
 
 .qualification-header {

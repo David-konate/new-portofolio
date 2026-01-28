@@ -38,7 +38,8 @@ export default function WorkPage() {
     <div className="work-container">
       <div className="work-hero">
         <h1 className="work-title">
-          <span className="bracket">{"<"}</span>Mes Travaux
+          <span className="bracket">{"<"}</span>
+          Mes Travaux
           <span className="bracket">{"/>"}</span>
         </h1>
         <p className="work-subtitle">

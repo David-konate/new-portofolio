@@ -17,7 +17,7 @@ export default function InterestsContent() {
 
   const interests: InterestItem[] = [
     {
-      src: "/projects/dev.png",
+      src: "/projects/dev.jpg",
       title: "Développement",
       text: `Fort de mes compétences en langages de programmation tels que Java, PHP, JavaScript, HTML et CSS, je suis un développeur full-stack accompli, capable de créer des applications web et mobiles complètes. Mon expertise en back-end avec PHP et en front-end avec React ou JavaScript me permet de maîtriser l'ensemble du processus de développement. Passionné par les innovations dans le rendu 3D et le développement d'applications immersives, j'explore constamment de nouvelles technologies pour créer des expériences utilisateur interactives et engageantes. Mon enthousiasme pour les jeux vidéo alimente mon intérêt pour les possibilités offertes par les technologies 3D dans le domaine du divertissement.`,
     },
@@ -37,7 +37,7 @@ export default function InterestsContent() {
       text: `Fasciné par les civilisations anciennes, je plonge dans l'histoire depuis mon plus jeune âge. De l'Antiquité à la fin de la Renaissance, j'explore les vestiges du passé à travers les visites de musées comme le Louvre, la découverte de châteaux historiques et l'étude des mythologies égyptiennes, romaines, grecques et nordiques. Cette passion pour l'histoire nourrit mon approche du métier de développeur. Les leçons tirées du passé sur la créativité humaine, la résolution de problèmes et l'adaptation aux changements m'inspirent à construire des applications qui respectent l'héritage culturel et les valeurs humaines. L'histoire me rappelle que l'innovation ne se fait jamais dans le vide, mais toujours en dialogue avec le passé.`,
     },
     {
-      src: "/projects/musique.WEBP",
+      src: "/projects/musique.jpg",
       title: "Musique",
       text: `Amoureux de la musique depuis mon enfance, j'explore les rythmes et les mélodies du monde entier. Du rap US et français des années 2000 au reggae et au dancehall, en passant par le jazz, le blues et les instruments tels que le violon, le saxophone et le piano, la musique nourrit mon âme et enrichit ma vie. Cette passion pour la musique se retrouve dans mon métier de développeur, où je m'inspire des émotions et des rythmes pour créer des expériences utilisateur immersives. L'intégration de musiques adaptées aux ambiances et la conception d'interfaces qui répondent aux émotions des utilisateurs sont autant de domaines où mon amour pour la musique me permet d'apporter une touche unique et vibrante aux applications que je développe.`,
     },

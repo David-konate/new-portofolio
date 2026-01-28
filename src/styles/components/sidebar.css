@@ -11,7 +11,7 @@
   position: sticky;
   top: 100px;
   animation: slideInLeft 0.8s ease-out;
-  margin-top: 15rem;
+  margin-top: 5rem;
 }
 
 @keyframes slideInLeft {

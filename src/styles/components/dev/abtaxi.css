@@ -4,7 +4,6 @@
   width: 100%;
   animation: fadeIn 0.8s ease-out;
   padding: 2rem;
-  margin-top: 10rem;
 }
 
 .project-content {
@@ -170,7 +169,7 @@
 .technologies-title {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--theme-link-color);
+  /* color: var(--theme-link-color); */
   font-family: "Montserrat", sans-serif;
   margin-bottom: 2rem;
   text-shadow: 0 0 20px rgba(233, 146, 135, 0.3);

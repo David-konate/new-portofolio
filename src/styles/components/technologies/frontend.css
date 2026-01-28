@@ -3,7 +3,7 @@
 .frontend-container {
   width: 100%;
   animation: fadeIn 0.8s ease-out;
-  margin-top: 10rem;
+    margin-top: 2rem;
 }
 
 .typing-cursor {

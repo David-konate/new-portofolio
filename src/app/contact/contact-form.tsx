@@ -399,8 +399,8 @@ export default function ContactForm() {
               <div className="contact-icon">📧</div>
               <div className="contact-info">
                 <h3>Email</h3>
-                <a href="mailto:da.konate@gmail.com" className="contact-link">
-                  da.konate@gmail.com
+                <a href="mailto:contact@david-konate.fr" className="contact-link">
+                  contact@david-konate.fr
                 </a>
               </div>
             </div>

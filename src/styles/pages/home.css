@@ -26,6 +26,8 @@
   padding: 2.5rem;
   box-shadow: var(--glass-shadow);
   animation: slideInLeft 0.8s ease-out;
+  max-width: 100%; /* Ajouté */
+  overflow: hidden; /* Ajouté */
 }
 
 /* Effet typing pour chaque élément */
@@ -33,41 +35,81 @@
   opacity: 0;
   overflow: hidden;
   white-space: nowrap;
+  max-width: 100%; /* Ajouté */
+}
+
+/* NOUVEAU : Désactive white-space: nowrap sur mobile */
+@media (max-width: 768px) {
+  .left-text {
+    padding: 1.5rem; /* Réduit le padding sur mobile */
+  }
+  
+  .left-text > * {
+    white-space: normal; /* Permet le retour à la ligne */
+    overflow: visible;
+  }
+  
+  /* Simplifie les animations sur mobile */
+  .left-text > *:nth-child(1),
+  .left-text > *:nth-child(2),
+  .left-text > *:nth-child(3),
+  .left-text > *:nth-child(4),
+  .left-text > *:nth-child(5),
+  .left-text > *:nth-child(6),
+  .left-text > *:nth-child(7),
+  .left-text > *:nth-child(8),
+  .left-text > *:nth-child(9),
+  .left-text > *:nth-child(10),
+  .left-text > *:nth-child(11) {
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: calc(var(--index, 0) * 0.1s);
+  }
 }
 
 /* Délais progressifs avec effet typewriter */
 .left-text > *:nth-child(1) { 
   animation: typewriter 1s steps(30) 0.2s forwards, fadeIn 0.1s 0.2s forwards;
+  --index: 1;
 }
 .left-text > *:nth-child(2) { 
   animation: typewriter 1.5s steps(40) 1.5s forwards, fadeIn 0.1s 1.5s forwards;
+  --index: 2;
 }
 .left-text > *:nth-child(3) { 
   animation: typewriter 1.2s steps(35) 3.2s forwards, fadeIn 0.1s 3.2s forwards;
+  --index: 3;
 }
 .left-text > *:nth-child(4) { 
   animation: typewriter 1.5s steps(40) 4.6s forwards, fadeIn 0.1s 4.6s forwards;
+  --index: 4;
 }
 .left-text > *:nth-child(5) { 
   animation: typewriter 1.5s steps(40) 6.3s forwards, fadeIn 0.1s 6.3s forwards;
+  --index: 5;
 }
 .left-text > *:nth-child(6) { 
   animation: typewriter 1.2s steps(35) 8s forwards, fadeIn 0.1s 8s forwards;
+  --index: 6;
 }
 .left-text > *:nth-child(7) { 
   animation: typewriter 1s steps(30) 9.4s forwards, fadeIn 0.1s 9.4s forwards;
+  --index: 7;
 }
 .left-text > *:nth-child(8) { 
   animation: typewriter 2s steps(50) 10.6s forwards, fadeIn 0.1s 10.6s forwards;
+  --index: 8;
 }
 .left-text > *:nth-child(9) { 
   animation: typewriter 1.2s steps(35) 12.8s forwards, fadeIn 0.1s 12.8s forwards;
+  --index: 9;
 }
 .left-text > *:nth-child(10) { 
   animation: typewriter 2s steps(60) 14.2s forwards, fadeIn 0.1s 14.2s forwards;
+  --index: 10;
 }
 .left-text > *:nth-child(11) { 
   animation: typewriter 1.5s steps(45) 16.4s forwards, fadeIn 0.1s 16.4s forwards;
+  --index: 11;
 }
 
 /* Right Section */
@@ -204,6 +246,7 @@
   transition: all 0.3s ease;
   border-bottom: 2px solid transparent;
   cursor: pointer;
+  word-break: break-all; /* Ajouté pour casser les liens longs */
 }
 
 .link:hover {

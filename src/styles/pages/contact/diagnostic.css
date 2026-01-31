@@ -688,3 +688,17 @@
   transform: none;
   box-shadow: none;
 }
+
+.char-count {
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  font-family: "Fira Mono", monospace;
+}
+
+.text-red {
+  color: #ef4444;
+}
+
+.text-green {
+  color: #22c55e;
+}

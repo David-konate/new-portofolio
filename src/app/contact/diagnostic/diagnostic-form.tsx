@@ -13,7 +13,7 @@ interface FormField {
   options?: (string | { value: string; category?: string })[];
   conditional?: string;
   helpText?: string;
-}
+  minLength?: number; }
 
 interface FormSection {
   title: string;
@@ -172,6 +172,7 @@ export default function DiagnosticForm() {
           label: "Décrivez votre activité actuelle en quelques lignes",
           type: "textarea",
           required: true,
+          minLength: 10, // AJOUTER
         },
         {
           name: "presence_digitale",
@@ -349,6 +350,7 @@ export default function DiagnosticForm() {
           label: "Décrivez le parcours type d'un utilisateur",
           type: "textarea",
           required: true,
+          minLength: 50,
           placeholder:
             "Ex: 1. L'utilisateur ouvre l'application et... 2. Il accède à... 3. Il effectue...",
         },
@@ -657,72 +659,78 @@ export default function DiagnosticForm() {
   };
 
   // Fonction pour vérifier si une étape est valide SANS modifier le state
-  const checkStepValidity = (stepIndex: number): boolean => {
-    const currentFields = sections[stepIndex].fields;
+const checkStepValidity = (stepIndex: number): boolean => {
+  const currentFields = sections[stepIndex].fields;
 
-    for (const field of currentFields) {
-      if (field.required) {
-        const value = formData[field.name];
+  for (const field of currentFields) {
+    if (field.required) {
+      const value = formData[field.name];
 
-        if (field.type === "checkbox") {
-          if (!value || (Array.isArray(value) && value.length === 0)) {
-            return false;
-          }
-        } else if (
-          !value ||
-          (typeof value === "string" && value.trim() === "")
-        ) {
+      if (field.type === "checkbox") {
+        if (!value || (Array.isArray(value) && value.length === 0)) {
+          return false;
+        }
+      } else if (!value || (typeof value === "string" && value.trim() === "")) {
+        return false;
+      }
+
+      // AJOUTER CETTE VALIDATION
+      if (field.minLength && typeof value === "string") {
+        if (value.trim().length < field.minLength) {
           return false;
         }
       }
     }
+  }
 
-    // Validation spéciale pour la dernière étape (consentement RGPD)
-    if (stepIndex === sections.length - 1) {
-      if (!formData.consent) {
-        return false;
-      }
+  if (stepIndex === sections.length - 1) {
+    if (!formData.consent) {
+      return false;
     }
+  }
 
-    return true;
-  };
+  return true;
+};
 
   // Utiliser useMemo pour calculer si l'étape actuelle est valide
   const isCurrentStepValid = useMemo(() => {
     return checkStepValidity(currentStep);
   }, [currentStep, formData, sections]);
 
-  const validateStep = (stepIndex: number = currentStep) => {
-    const currentFields = sections[stepIndex].fields;
-    const newErrors: { [key: string]: string } = {};
+const validateStep = (stepIndex: number = currentStep) => {
+  const currentFields = sections[stepIndex].fields;
+  const newErrors: { [key: string]: string } = {};
 
-    currentFields.forEach((field) => {
-      if (field.required) {
-        const value = formData[field.name];
+  currentFields.forEach((field) => {
+    if (field.required) {
+      const value = formData[field.name];
 
-        if (field.type === "checkbox") {
-          if (!value || (Array.isArray(value) && value.length === 0)) {
-            newErrors[field.name] = "Veuillez sélectionner au moins une option";
-          }
-        } else if (
-          !value ||
-          (typeof value === "string" && value.trim() === "")
-        ) {
-          newErrors[field.name] = "Ce champ est obligatoire";
+      if (field.type === "checkbox") {
+        if (!value || (Array.isArray(value) && value.length === 0)) {
+          newErrors[field.name] = "Veuillez sélectionner au moins une option";
+        }
+      } else if (!value || (typeof value === "string" && value.trim() === "")) {
+        newErrors[field.name] = "Ce champ est obligatoire";
+      }
+      // AJOUTER CETTE PARTIE
+      else if (field.minLength && typeof value === "string") {
+        if (value.trim().length < field.minLength) {
+          newErrors[field.name] =
+            `Minimum ${field.minLength} caractères requis (${value.trim().length} actuellement)`;
         }
       }
-    });
-
-    // Validation spéciale pour la dernière étape (consentement RGPD)
-    if (stepIndex === sections.length - 1) {
-      if (!formData.consent) {
-        newErrors.consent = "Vous devez accepter le traitement de vos données";
-      }
     }
+  });
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  if (stepIndex === sections.length - 1) {
+    if (!formData.consent) {
+      newErrors.consent = "Vous devez accepter le traitement de vos données";
+    }
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   const nextStep = () => {
     if (validateStep()) {
@@ -883,11 +891,19 @@ export default function DiagnosticForm() {
               placeholder={field.placeholder}
               className={`diagnostic-textarea ${error ? "error" : ""}`}
             />
+            {/* AJOUTER CE COMPTEUR */}
+            {field.minLength && (
+              <p
+                className={`char-count ${((value as string) || "").trim().length < field.minLength ? "text-red" : "text-green"}`}
+              >
+                {((value as string) || "").trim().length} / {field.minLength}{" "}
+                caractères minimum
+              </p>
+            )}
             {field.helpText && <p className="help-text">{field.helpText}</p>}
             {error && <p className="error-message">{error}</p>}
           </div>
         );
-
       case "select":
         return (
           <div key={field.name} className="diagnostic-field">

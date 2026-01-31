@@ -90,7 +90,7 @@ type DiagnosticFormData = z.infer<typeof DiagnosticFormSchema>;
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
   limiter: Ratelimit.slidingWindow(
-    process.env.NODE_ENV === "production" ? 2 : 100,
+    process.env.NODE_ENV === "production" ? 10 : 100,
     "1 h",
   ),
 });

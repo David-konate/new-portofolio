@@ -125,6 +125,11 @@ export default function DiagnosticForm() {
     fetchCsrfToken();
   }, []);
 
+  // Ajouter cet useEffect après les autres useEffect
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentStep]);
+
   const sections: FormSection[] = [
     {
       title: "Informations générales",

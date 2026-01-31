@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { ChevronRight, ChevronLeft, Check, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
@@ -651,8 +651,44 @@ export default function DiagnosticForm() {
     });
   };
 
-  const validateStep = () => {
-    const currentFields = sections[currentStep].fields;
+  // Fonction pour vérifier si une étape est valide SANS modifier le state
+  const checkStepValidity = (stepIndex: number): boolean => {
+    const currentFields = sections[stepIndex].fields;
+
+    for (const field of currentFields) {
+      if (field.required) {
+        const value = formData[field.name];
+
+        if (field.type === "checkbox") {
+          if (!value || (Array.isArray(value) && value.length === 0)) {
+            return false;
+          }
+        } else if (
+          !value ||
+          (typeof value === "string" && value.trim() === "")
+        ) {
+          return false;
+        }
+      }
+    }
+
+    // Validation spéciale pour la dernière étape (consentement RGPD)
+    if (stepIndex === sections.length - 1) {
+      if (!formData.consent) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  // Utiliser useMemo pour calculer si l'étape actuelle est valide
+  const isCurrentStepValid = useMemo(() => {
+    return checkStepValidity(currentStep);
+  }, [currentStep, formData, sections]);
+
+  const validateStep = (stepIndex: number = currentStep) => {
+    const currentFields = sections[stepIndex].fields;
     const newErrors: { [key: string]: string } = {};
 
     currentFields.forEach((field) => {
@@ -673,7 +709,7 @@ export default function DiagnosticForm() {
     });
 
     // Validation spéciale pour la dernière étape (consentement RGPD)
-    if (currentStep === sections.length - 1) {
+    if (stepIndex === sections.length - 1) {
       if (!formData.consent) {
         newErrors.consent = "Vous devez accepter le traitement de vos données";
       }
@@ -693,6 +729,26 @@ export default function DiagnosticForm() {
   const prevStep = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 0));
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Fonction pour gérer le clic sur les boutons de raccourci
+  const handleStepClick = (index: number) => {
+    // Autoriser seulement si :
+    // 1. C'est l'étape actuelle
+    // 2. C'est une étape précédente
+    // 3. C'est l'étape suivante ET l'étape actuelle est valide
+    if (index === currentStep) {
+      return; // Déjà sur cette étape
+    } else if (index < currentStep) {
+      // Retour en arrière toujours autorisé
+      setCurrentStep(index);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (index === currentStep + 1 && checkStepValidity(currentStep)) {
+      // Avancer d'une étape si l'étape actuelle est valide
+      setCurrentStep(index);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    // Sinon, ne rien faire (empêche le saut vers des étapes futures non validées)
   };
 
   const handleSubmit = async () => {
@@ -1037,26 +1093,34 @@ export default function DiagnosticForm() {
 
         {/* Steps Navigation */}
         <div className="steps-navigation">
-          {sections.map((section, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentStep(index)}
-              className={`step-button ${
-                index === currentStep
-                  ? "active"
-                  : index < currentStep
-                    ? "completed"
-                    : "inactive"
-              }`}
-            >
-              {index < currentStep ? (
-                <Check className="step-icon-check" />
-              ) : (
-                <span className="step-emoji">{section.icon}</span>
-              )}
-              <span className="step-title">{section.title}</span>
-            </button>
-          ))}
+          {sections.map((section, index) => {
+            // Déterminer si le bouton est cliquable
+            const isClickable =
+              index <= currentStep || // Étapes actuelles ou précédentes
+              (index === currentStep + 1 && isCurrentStepValid); // Étape suivante si l'actuelle est valide
+
+            return (
+              <button
+                key={index}
+                onClick={() => isClickable && handleStepClick(index)}
+                className={`step-button ${
+                  index === currentStep
+                    ? "active"
+                    : index < currentStep
+                      ? "completed"
+                      : "inactive"
+                } ${!isClickable ? "disabled" : ""}`}
+                disabled={!isClickable}
+              >
+                {index < currentStep ? (
+                  <Check className="step-icon-check" />
+                ) : (
+                  <span className="step-emoji">{section.icon}</span>
+                )}
+                <span className="step-title">{section.title}</span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Form Content */}
@@ -1116,14 +1180,18 @@ export default function DiagnosticForm() {
           )}
 
           {currentStep < sections.length - 1 ? (
-            <button onClick={nextStep} className="btn-next">
+            <button
+              onClick={nextStep}
+              className="btn-next"
+              disabled={!isCurrentStepValid}
+            >
               Suivant
               <ChevronRight className="btn-icon" />
             </button>
           ) : (
             <button
               onClick={handleSubmit}
-              disabled={loading}
+              disabled={loading || !isCurrentStepValid}
               className="btn-submit"
             >
               {loading ? "Envoi en cours..." : "Envoyer le diagnostic"}

@@ -513,6 +513,7 @@
 
 /* Info Footer */
 .info-footer {
+  margin-top: 1rem;
   display: flex;
   align-items: flex-start;
   gap: 1rem;
@@ -658,4 +659,32 @@
   .consent-text {
     font-size: 0.85rem !important;
   }
+}
+
+
+/* Boutons désactivés */
+.step-button.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.step-button.disabled:hover {
+  transform: none;
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+}
+
+.btn-next:disabled,
+.btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(128, 128, 128, 0.3);
+  box-shadow: none;
+}
+
+.btn-next:disabled:hover,
+.btn-submit:disabled:hover {
+  transform: none;
+  box-shadow: none;
 }

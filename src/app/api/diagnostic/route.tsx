@@ -36,8 +36,10 @@ const DiagnosticFormSchema = z.object({
   // Section 4: Fonctionnalités
   fonctionnalites: z.array(z.string()),
   autres_fonctionnalites: z.string().optional(),
-  parcours_utilisateur: z.string().min(10, "Parcours utilisateur requis"),
-
+  parcours_utilisateur: z
+    .string()
+    .min(50, "Parcours utilisateur requis (minimum 50 caractères)"),
+  
   // Section 5: Design
   charte_graphique: z.string().optional(),
   couleurs: z.string().optional(),

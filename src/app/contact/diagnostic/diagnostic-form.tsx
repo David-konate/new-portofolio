@@ -186,6 +186,7 @@ export default function DiagnosticForm() {
             "Qu'est-ce qui vous pousse à créer cette application maintenant ?",
           type: "textarea",
           required: true,
+          minLength: 10, // AJOUTER
         },
         {
           name: "objectif_principal",
@@ -212,6 +213,7 @@ export default function DiagnosticForm() {
             "Quels problèmes concrets cette application va-t-elle résoudre ?",
           type: "textarea",
           required: true,
+          minLength: 10,
           placeholder:
             "Ex: réduire le temps d'attente téléphonique, permettre la commande 24h/24...",
         },
